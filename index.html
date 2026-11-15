@@ -730,6 +730,103 @@
                 border-width: 3px;
             }
         }
+        /* Role Selector Buttons */
+        .role-selector {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .role-btn {
+            padding: 0.75rem 1.6rem;
+            border: 2px solid var(--primary-blue);
+            background: var(--white);
+            color: var(--primary-blue);
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: inherit;
+        }
+
+        .role-btn:hover,
+        .role-btn.active {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.35);
+        }
+
+        .role-placeholder {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background: var(--white);
+            border-radius: 15px;
+            border: 2px dashed rgba(52, 152, 219, 0.3);
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #projects .role-placeholder {
+            background: var(--light-gray);
+        }
+
+        .role-placeholder i {
+            font-size: 2.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-date {
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--primary-blue);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .project-bullets {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-bullets li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.7rem;
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .project-bullets li::before {
+            content: '➤';
+            position: absolute;
+            left: 0;
+            color: var(--primary-blue);
+            font-size: 0.85rem;
+        }
+
         /* Gaya tombol CV yang konsisten dengan ikon sosmed */
         .cv-button {
             display: inline-flex;
@@ -774,7 +871,6 @@
                 <li><a href="#education">Education</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#tools">Tools</a></li>
                 <li><a href="#projects">Projects</a></li>
             </ul>
             <div class="hamburger">
@@ -793,7 +889,7 @@
             </div>
             <div class="home-content">
                 <h1>Hello, I'm <span>Muhammad Raditya Adhirajasa</span></h1>
-                <p>Fresh graduate in Computer Science from Lampung University with experience as a Teaching Assistant and Data Science Intern at Statistics Indonesia (BPS). Experienced in building end-to-end data pipelines, unsupervised & supervised learning models, and model deployment using Streamlit.</p>
+                <p>Computer Science graduate from the University of Lampung with Data Science internships at Telkom Indonesia and Statistics Indonesia (BPS RI). At Telkom, engineered a Vertex AI RAG pipeline for OSS BKPM, designed an LLM-as-a-Judge evaluation framework for Sekretariat Negara, modeled an 18-entity enterprise registry with SQL ingestion pipelines, and published Looker Studio quality dashboards. At BPS RI, built reproducible Python pipelines over 300,000 household records and a validated K-Means segmentation model for social-aid targeting. Experienced across AI/LLM systems, machine learning, data engineering pipelines, and business intelligence analytics.</p>
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/muhammad-raditya-adhirajasa/" target="_blank" title="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
@@ -801,14 +897,9 @@
                     <a href="https://github.com/MRadityaAdhirajasa" target="_blank" title="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <!-- <a href="mailto:radityaadhirajasaa@gmail.com" title="Email">
+                    <a href="mailto:radityaadhirajasaa@gmail.com" title="Email">
                         <i class="fas fa-envelope"></i>
-                    </a> -->
-                    
-                    <!-- TOMBOL CV BARU -->
-                    <!-- <button href="media\CV.pdf" target="_blank" title="View CV" class="cv-button" rel="noopener noreferrer">
-                        Curriculum Vitae
-                    </button> -->
+                    </a>
                 </div>
                 <div class="cta-buttons" style="margin-top: 2rem;"> 
                     <a href="media/CV.pdf" target="_blank" title="View CV" class="cv-button">
@@ -826,21 +917,20 @@
             <div class="education-header">
                 <div>
                     <h3>Bachelor of Computer Science</h3>
-                    <p class="degree">Lampung University</p>
+                    <p class="degree">University of Lampung — Bandar Lampung, Indonesia</p>
                 </div>
-                <span class="duration"><i class="fas fa-calendar-alt"></i> 2021 - 2025</span>
+                <span class="duration"><i class="fas fa-calendar-alt"></i> 2021 – 2025</span>
             </div>
             <div class="education-details">
-                <p><i class="fas fa-graduation-cap"></i> GPA: 3.60/4.00</p>
+                <p><i class="fas fa-graduation-cap"></i> GPA: 3.60 / 4.00</p>
+                <p><i class="fas fa-book-open"></i> <span><strong>Thesis:</strong> <em>Implementation of a CRNN with BiLSTM for Speech Emotion Recognition</em></span></p>
                 <div class="courses-list">
                     <strong>Relevant Coursework:</strong>
                     <ul>
-                        <li>Database Systems</li>
-                        <li>Statistics & Probability</li>
                         <li>Machine Learning</li>
                         <li>Artificial Intelligence</li>
-                        <li>Pattern Recognition</li>
-                        <li>Data Warehouse & Big Data</li>
+                        <li>Database Systems</li>
+                        <li>Data Structures</li>
                     </ul>
                 </div>
             </div>
@@ -851,24 +941,46 @@
     <section id="experience">
         <h2 class="section-title">Experience</h2>
         <div class="experience-grid">
-            <!-- Data Science Intern -->
+            <!-- Telkom Indonesia -->
             <div class="experience-card">
                 <div class="experience-header">
                     <h3>Data Science Intern</h3>
                     <p class="company">
-                        <i class="fas fa-building"></i> Statistics Indonesia (BPS)
+                        <i class="fas fa-building"></i> Telkom Indonesia — Jakarta, Indonesia
                     </p>
                     <p class="duration">
-                        <i class="fas fa-calendar-alt"></i> June 2024 - August 2024
+                        <i class="fas fa-calendar-alt"></i> December 2025 – June 2026
                     </p>
                 </div>
                 <div class="experience-details">
                     <ul>
-                        <li>Developed social-economic data analysis project to provide social assistance recommendations</li>
-                        <li>Performed exploratory data analysis (EDA) and data preprocessing</li>
-                        <li>Designed and implemented unsupervised learning pipeline using K-Means clustering for social-economic data segmentation</li>
-                        <li>Validated model performance quantitatively using Silhouette Score, Calinski-Harabasz Index, and Davies-Bouldin Index to ensure optimal cluster cohesion and separation</li>
-                        <li>Developed and trained models on labeled data to improve social assistance recommendation system</li>
+                        <li>Engineered a Retrieval-Augmented Generation pipeline on Google Cloud Platform (Vertex AI) to automate first-line OSS BKPM licensing support, owning the ingestion, chunking, and retrieval layers over 50 scraped pages and FAQ records and lifting answer accuracy from 61% to 88% on a 50-question internal evaluation set.</li>
+                        <li>Designed and executed an LLM-as-a-Judge evaluation framework for Sekretariat Negara, scoring outputs on 5 criteria across 60 test prompts to catch grounding and alignment failures before release to a government-facing application.</li>
+                        <li>Modeled the BKPM enterprise registry end-to-end, authoring an ERD across 18 entities and writing SQL cleaning and ingestion pipelines that eliminated duplicate and inconsistent records blocking downstream analytics.</li>
+                        <li>Instrumented pipelines with Langfuse and published Looker Studio dashboards that converted raw evaluation traces into per-release quality metrics stakeholders could read without engineering support.</li>
+                        <li>Benchmarked candidate models on Vertex AI by fine-tuning Gemini against AutoML baselines for a binary customer-deposit classification case, then recommended the winning configuration on cost-versus-accuracy grounds.</li>
+                        <li>Led R&amp;D on vectorless retrieval using PageIndex for the West Java Provincial Government, stress-testing native chunking against table-heavy RPJMD documents and delivering a comparative performance report that informed the production framework decision.</li>
+                        <li>Prototyped Chain-of-Thought distillation experiments, building the evaluation harness to measure how much teacher-model reasoning a smaller student retained at lower inference latency.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- BPS RI -->
+            <div class="experience-card">
+                <div class="experience-header">
+                    <h3>Data Science Intern</h3>
+                    <p class="company">
+                        <i class="fas fa-building"></i> Badan Pusat Statistik RI (Statistics Indonesia) — Jakarta, Indonesia
+                    </p>
+                    <p class="duration">
+                        <i class="fas fa-calendar-alt"></i> June 2024 – August 2024
+                    </p>
+                </div>
+                <div class="experience-details">
+                    <ul>
+                        <li>Built reproducible Python pipelines (Pandas, NumPy) for national socio-economic survey data, applying feature engineering and dimensionality reduction across 300,000 household records and 32 high-cardinality demographic variables.</li>
+                        <li>Developed a K-Means segmentation model to automate social-aid targeting, resolving households into 3 actionable clusters by asset ownership and dependency ratio.</li>
+                        <li>Validated cluster integrity against Silhouette, Calinski-Harabasz, and Davies-Bouldin scores, then translated the segments into a scalable targeting workflow recommended to program stakeholders.</li>
                     </ul>
                 </div>
             </div>
@@ -878,42 +990,19 @@
                 <div class="experience-header">
                     <h3>Teaching Assistant</h3>
                     <p class="company">
-                        <i class="fas fa-graduation-cap"></i> Lampung University
+                        <i class="fas fa-graduation-cap"></i> University of Lampung — Bandar Lampung, Indonesia
                     </p>
                     <p class="duration">
-                        <i class="fas fa-calendar-alt"></i> August 2023 - June 2024
+                        <i class="fas fa-calendar-alt"></i> August 2023 – June 2024
                     </p>
                 </div>
                 <div class="experience-details">
-                    <p style="color: var(--dark-text); font-weight: 600; margin-bottom: 1.5rem;">Assisted in multiple courses with the following responsibilities:</p>
-                    
-                    <div class="ta-courses">
-                        <div class="ta-course-item">
-                            <h4><i class="fas fa-robot"></i> Artificial Intelligence</h4>
-                            <p class="course-duration">February 2024 - June 2024</p>
-                            <ul>
-                                <li>Developed and wrote AI practicum modules, adopted as official teaching material for one semester</li>
-                                <li>Taught basic AI concepts including supervised and unsupervised learning to students in weekly 100-minute sessions</li>
-                            </ul>
-                        </div>
-
-                        <div class="ta-course-item">
-                            <h4><i class="fas fa-code"></i> Declarative Programming</h4>
-                            <p class="course-duration">February 2024 - June 2024</p>
-                            <ul>
-                                <li>Guided weekly practicum sessions, provided technical guidance in Prolog program implementation</li>
-                                <li>Assisted with debugging and application of logic rules</li>
-                            </ul>
-                        </div>
-
-                        <div class="ta-course-item">
-                            <h4><i class="fas fa-network-wired"></i> Data Communication & Computer Networks</h4>
-                            <p class="course-duration">August 2023 - December 2023</p>
-                            <ul>
-                                <li>Taught a class of 48 students about data communication design, network implementation, and subnetting calculations</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <p style="color: var(--dark-text); font-weight: 600; margin-bottom: 1rem;">Courses: Artificial Intelligence, Declarative Programming, Computer Networks</p>
+                    <ul>
+                        <li>Taught hands-on lab sessions to 100+ students across three semesters, converting machine learning, logic programming, and networking theory into runnable Python implementations.</li>
+                        <li>Authored the Python curriculum for the Artificial Intelligence course, building custom datasets and reproducible Scikit-learn and TensorFlow templates that were adopted as the primary lab material for subsequent cohorts.</li>
+                        <li>Ran intensive debugging clinics on student projects, mentoring cohorts end-to-end from preprocessing to evaluation and reaching a 100% course completion rate in Declarative Programming.</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -921,101 +1010,17 @@
 
     <!-- Skills Section -->
     <section id="skills">
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-grid">
-            <!-- Programming Languages -->
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fab fa-python"></i>
-                </div>
-                <h3>Python</h3>
-                <p>Primary Programming Language</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-database"></i>
-                </div>
-                <h3>SQL</h3>
-                <p>Database Query & Manipulation</p>
-            </div>
-                 
-            <!-- Skills & Concepts -->
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-sort-amount-up"></i>
-                </div>
-                <h3>ML Algorithms</h3>
-                <p>Classification, Regression, Clustering</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-language"></i>
-                </div>
-                <h3>Natural Language Processing</h3>
-                <p>Text Processing & Analysis</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-eye"></i>
-                </div>
-                <h3>Computer Vision</h3>
-                <p>Image & Video Processing</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-palette"></i>
-                </div>
-                <h3>Data Visualization</h3>
-                <p>Visual Storytelling</p>
-            </div>
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="role-selector" role="tablist" aria-label="Select Role for Skills">
+            <button type="button" class="role-btn" data-role="ae"><i class="fas fa-robot"></i> AI Engineer</button>
+            <button type="button" class="role-btn" data-role="ds"><i class="fas fa-brain"></i> Data Scientist</button>
+            <button type="button" class="role-btn" data-role="de"><i class="fas fa-server"></i> Data Engineer</button>
+            <button type="button" class="role-btn" data-role="da"><i class="fas fa-chart-line"></i> Data Analyst</button>
         </div>
-    </section>
-
-    <!-- Tools Section -->
-    <section id="tools">
-        <h2 class="section-title">Tools</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fab fa-git-alt"></i>
-                </div>
-                <h3>Git</h3>
-                <p>Version Control System</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <h3>Google Colab</h3>
-                <p>Cloud-based Jupyter Notebook</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-chart-pie"></i>
-                </div>
-                <h3>Tableau</h3>
-                <p>Business Intelligence & Analytics</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3>Power BI</h3>
-                <p>Data Visualization & Reporting</p>
-            </div>
-                        <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <h3>Scikit-learn</h3>
-                <p>Machine Learning Library</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <h3>TensorFlow</h3>
-                <p>Deep Learning Framework</p>
+        <div id="skills-container">
+            <div class="role-placeholder">
+                <i class="fas fa-hand-pointer"></i>
+                Select a role above to view role-specific technical skills.
             </div>
         </div>
     </section>
@@ -1023,165 +1028,341 @@
     <!-- Projects Section -->
     <section id="projects">
         <h2 class="section-title">Projects</h2>
-        <div class="projects-grid">
-            <!-- Project 1 -->
-            <div class="project-card">
-                <!-- <img src="media\Interactive Indonesian Sentiment.png" alt="Interactive Indonesian Sentiment Analysis Pipeline" class="project-image"> -->
-                <div class="project-content">
-                    <h3>Interactive Indonesian Sentiment Analysis Pipeline</h3>
-                    <p>Developed an end-to-end web application for Indonesian sentiment analysis using Streamlit. Enables customization of ML pipelines with feature extraction and model classification choices. Presents interactive model evaluation and provides download features for datasets and model artifacts.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">Scikit-learn</span>
-                        <span class="tech-tag">NLP</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://app-indonesian-sentiment-pipeline.streamlit.app/" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
-                        </a>
-                        <a href="https://github.com/MRadityaAdhirajasa/streamlit-indonesian-sentiment-pipeline" target="_blank">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="project-card">
-                <!-- <img src="media\Hadoop Sentiment.png" alt="Hadoop Sentiment Analysis" class="project-image"> -->
-                <div class="project-content">
-                    <h3>Hadoop Sentiment Analysis</h3>
-                    <p>Developed a big data processing pipeline using Hadoop Streaming for text preprocessing, tokenization, and word frequency extraction. Implemented manual Naïve Bayes Classification based on distributed probability computation to classify positive vs negative sentiment.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Hadoop</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Naïve Bayes</span>
-                        <span class="tech-tag">NLP</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/MRadityaAdhirajasa/Hadoop-Sentiment-Analysis" target="_blank">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="project-card">
-                <!-- <img src="media\Speech Emotion Recognition.png" alt="Speech Emotion Recognition" class="project-image"> -->
-                <div class="project-content">
-                    <h3>Speech Emotion Recognition</h3>
-                    <p>Developed a speech emotion recognition system using CNN+BILSTM model. Processed CREMA-D dataset to classify 6 emotions. Enhanced model robustness through data augmentation. Achieved 68% accuracy on CREMA-D dataset, surpassing baseline CNN performance. Deployed model using Streamlit for real-time predictions.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">TensorFlow</span>
-                        <span class="tech-tag">CNN</span>
-                        <span class="tech-tag">BILSTM</span>
-                        <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">Audio Processing</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://speech-emotion-recognition-cnn-bilstm-model.streamlit.app/" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
-                        </a>
-                        <a href="https://github.com/MRadityaAdhirajasa/Speech_Emotion_Recognition_CNN_Log-Mel-Spectogram" target="_blank">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="project-card">
-                <!-- <img src="media\Air Quality Analysis.png" alt="Air Quality Analysis" class="project-image"> -->
-                <div class="project-content">
-                    <h3>Air Quality Analysis</h3>
-                    <p>Conducted air quality analysis using data from multiple stations in China. Developed an interactive dashboard using Streamlit for visualizing analysis results. Concluded moderate PM2.5 pollution levels during summer (2013-2015) and high NO2 and CO emissions during peak hours in 2016.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">Pandas</span>
-                        <span class="tech-tag">EDA</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://airqualityanalysis2712.streamlit.app/" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> Live Demo
-                        </a>
-                        <a href="https://github.com/MRadityaAdhirajasa/Air_Quality_Analysis" target="_blank">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 5 -->
-            <div class="project-card">
-                <!-- <img src="https://via.placeholder.com/400x200" alt="Loan Default Prediction" class="project-image"> -->
-                <div class="project-content">
-                    <h3>Loan Default Prediction</h3>
-                    <p>Performed EDA and data cleaning on over 300,000 rows of data. Created visualizations to illustrate key insights and relationships between variables. Analyzed model performance using ROC-AUC score with Random Forest and Linear Regression to predict loan repayment timeliness.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Scikit-learn</span>
-                        <span class="tech-tag">Pandas</span>
-                        <span class="tech-tag">Seaborn</span>
-                        <span class="tech-tag">ROC-AUC</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://colab.research.google.com/drive/12gCyjisSX-PCf1VXJw3bSldQaIrG0D0N?usp=sharing" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> Google Colab
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 6 -->
-            <div class="project-card">
-                <!-- <img src="https://via.placeholder.com/400x200" alt="US Flight Delay Visualization" class="project-image"> -->
-                <div class="project-content">
-                    <h3>US Flight Delay Visualization</h3>
-                    <p>Processed and cleaned over 1,000 data entries for quality analysis. Designed an informative dashboard for airport delay analysis using Tableau. Developed geographic visualizations on maps to display cities and airports experiencing delays.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Tableau</span>
-                        <span class="tech-tag">Data Cleaning</span>
-                        <span class="tech-tag">Visualization</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://public.tableau.com/app/profile/bejo.subejo/viz/FlightDelay_17006300929420/USFlightDelay" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> Tableau Public
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 7 -->
-            <div class="project-card">
-                <!-- <img src="https://via.placeholder.com/400x200" alt="Mushroom Classification with K-Nearest Neighbors" class="project-image"> -->
-                <div class="project-content">
-                    <h3>Mushroom Classification with K-Nearest Neighbors</h3>
-                    <p>Performed exploratory data analysis and preprocessing using Python in Google Colab. Applied cross-validation and grid search to determine optimal K value. Achieved 100% model accuracy on test set using optimal K value.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Scikit-learn</span>
-                        <span class="tech-tag">K-NN</span>
-                        <span class="tech-tag">Cross-Validation</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://colab.research.google.com/drive/1Ya7TjEs93IbTI1hRXnZXlNfxa5ifZcsZ?usp=sharing" target="_blank">
-                            <i class="fas fa-external-link-alt"></i> Google Colab
-                        </a>
-                    </div>
-                </div>
+        <div class="role-selector" role="tablist" aria-label="Select Role for Projects">
+            <button type="button" class="role-btn" data-role="ae"><i class="fas fa-robot"></i> AI Engineer</button>
+            <button type="button" class="role-btn" data-role="ds"><i class="fas fa-brain"></i> Data Scientist</button>
+            <button type="button" class="role-btn" data-role="de"><i class="fas fa-server"></i> Data Engineer</button>
+            <button type="button" class="role-btn" data-role="da"><i class="fas fa-chart-line"></i> Data Analyst</button>
+        </div>
+        <div id="projects-container">
+            <div class="role-placeholder">
+                <i class="fas fa-folder-open"></i>
+                Select a role above to display projects tailored to that role.
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; Muhammad Raditya Adhirajasa. radityaadhirajasaa@gmail.com.</p>
+        <p>&copy; Muhammad Raditya Adhirajasa | Bandar Lampung, Indonesia (Open to relocation: Jakarta / Jabodetabek) | radityaadhirajasaa@gmail.com</p>
     </footer>
 
     <script>
+        const ROLE_DATA = {
+            ae: {
+                skills: [
+                    { icon: 'fas fa-code', title: 'Languages', items: 'Python, SQL' },
+                    { icon: 'fas fa-network-wired', title: 'LLM Systems & Retrieval', items: 'LangGraph, RAG, Qdrant vector database, prompt engineering, Vertex AI RAG Engine, Langfuse tracing, LLM-as-a-judge evaluation' },
+                    { icon: 'fas fa-microchip', title: 'Model Training', items: 'PyTorch, TensorFlow, Scikit-learn, QLoRA & PEFT fine-tuning, Gemini fine-tuning, Chain-of-Thought distillation' },
+                    { icon: 'fas fa-cloud-upload-alt', title: 'Engineering & Deployment', items: 'Google Cloud Platform, FastAPI, Pydantic, Docker, Streamlit, Git, PostgreSQL, Hugging Face Spaces' },
+                    { icon: 'fas fa-globe', title: 'Spoken Languages', items: 'Indonesian (native), English (conversation), Japanese (JLPT N3)' }
+                ],
+                projects: [
+                    {
+                        title: 'Agentic RAG for Indonesian Regulatory Documents',
+                        date: 'September 2026',
+                        tech: ['LangGraph', 'Qdrant', 'FastAPI'],
+                        bullets: [
+                            'Built a cyclic 7-node LangGraph agent over PP 28/2025 and OSS BKPM FAQs, where a verify node scores each drafted answer against its retrieved context and routes failures back to retrieval under parameters the code forces to differ, rather than retrying identically.',
+                            'Chunked the regulation by legal article rather than character count so chunk boundaries match citation boundaries, producing 829 chunks that let answers cite to article and page for reader verification, and ran hybrid dense-sparse retrieval fused in Qdrant via RRF with cross-encoder reranking to reach recall@10 of 0.73 on a 30-question golden set.',
+                            'Held the system to USD 0.43 per 1,000 questions and verified refusal behaviour, with 4 of 4 out-of-corpus questions returning a refusal instead of a fabrication.'
+                        ],
+                        links: [
+                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/agentic-rag-regdocs' }
+                        ]
+                    },
+                    {
+                        title: 'LLM-as-a-Judge Evaluation Pipeline',
+                        date: 'March 2026',
+                        tech: ['Langfuse', 'Gemini'],
+                        bullets: [
+                            'Built a repeatable evaluation pipeline for an Indonesian public-services QA agent, pushing rubric scores to Langfuse as dataset experiments so each prompt or model change is measured against previous runs instead of judged by impression.',
+                            'Showed a high judge score can be meaningless, with the rubric returning 4.93 of 5 while the underlying citations pointed at unrelated sites, then traced it to a rubric that never sees retrieved sources and specified human-agreement and cross-judge validation as prerequisites before any score drives a decision.'
+                        ],
+                        links: [
+                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/llm-judge-langfuse' }
+                        ]
+                    },
+                    {
+                        title: 'The Faithfulness Cost of CoT Compression',
+                        date: 'August 2026',
+                        tech: ['QLoRA', 'Qwen3', 'Counterfactual Evaluation'],
+                        bullets: [
+                            'Ran 16 QLoRA fine-tuning runs across two Qwen3 students and four chain-of-thought supervision densities, measuring whether a distilled model\'s stated reasoning actually causes its answer through three counterfactual tests rather than final-answer accuracy alone.',
+                            'Found the trade-off runs opposite to the hypothesis, with faithfulness falling as supervision gets longer: long-CoT students scored 76-83% on mistake sensitivity against 97-99% for moderate CoT while costing 3.9x the tokens for 2.84 accuracy points.'
+                        ],
+                        links: [
+                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/cot-faithfulness-cost' }
+                        ]
+                    },
+                    {
+                        title: 'Does Granularity Still Matter Under QLoRA?',
+                        date: 'August 2026',
+                        tech: ['CoT Distillation', 'QLoRA', 'GSM8K'],
+                        bullets: [
+                            'Ran 14 QLoRA distillation runs holding problems, gold answers, and hyperparameters constant so rationale length was the only variable, and measured each student before distillation, a control that reversed the headline: half the configurations left the larger student below the model that was never trained at all.'
+                        ],
+                        links: [
+                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/cot-granularity-qlora' }
+                        ]
+                    },
+                    {
+                        title: 'RAG Chatbot with Inline LLM-as-a-Judge',
+                        date: 'February 2026',
+                        tech: ['Vertex AI RAG Engine', 'Streamlit', 'Docker'],
+                        bullets: [
+                            'Built an OSS BKPM licensing chatbot that scores its own output in production, with a stronger judge model (gemini-2.5-pro) rating each answer from the retrieval model (gemini-2.5-flash-lite) on 5 criteria at temperature 0 and surfacing the scores as a card beneath the chat bubble rather than in a separate dashboard.',
+                            'Turned that same case into a critique of the rubric, since the useless answer still scored coherence 5, showing a plain average across criteria misleads and that accuracy and completeness need weighting or a groundedness criterion that sees retrieved context.',
+                            'Shipped the demo on Hugging Face Spaces via Docker with per-IP rate limiting at 15 chats per day to cap cost, and reconstructed service-account credentials into the container at runtime so they never persist in the image or repository.'
+                        ],
+                        links: [
+                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/rag-chatbot-llm-judge' }
+                        ]
+                    }
+                ]
+            },
+            ds: {
+                skills: [
+                    { icon: 'fas fa-code', title: 'Languages', items: 'Python, SQL' },
+                    { icon: 'fas fa-brain', title: 'Machine Learning & Statistics', items: 'Scikit-learn, TensorFlow, PyTorch, deep learning, LLM fine-tuning (QLoRA, PEFT), OpenCV, classification, clustering' },
+                    { icon: 'fas fa-database', title: 'Data Modeling & Pipelines', items: 'PostgreSQL, Git, NoSQL, ERD design, Docker, Pandas, DBeaver' },
+                    { icon: 'fas fa-chart-bar', title: 'Analytics & Visualization', items: 'Power BI, Tableau, Looker Studio, Streamlit, Matplotlib, Seaborn, Google Sheets' },
+                    { icon: 'fas fa-cloud', title: 'Generative AI & Cloud', items: 'Google Cloud Platform, RAG pipeline design, LLM evaluation, Gemini fine-tuning, Chain-of-Thought distillation, Langfuse' },
+                    { icon: 'fas fa-globe', title: 'Spoken Languages', items: 'Indonesian (native), English (conversation), Japanese (JLPT N3)' }
+                ],
+                projects: [
+                    {
+                        title: 'Agentic RAG for Indonesian Regulatory Documents',
+                        date: 'September 2026',
+                        tech: ['LangGraph', 'Qdrant', 'FastAPI'],
+                        bullets: [
+                            'Built a cyclic 7-node LangGraph agent over PP 28/2025 and OSS BKPM FAQs, where a verify node scores each drafted answer against its retrieved context and routes failures back to retrieval under parameters the code forces to differ, rather than retrying identically.',
+                            'Chunked the regulation by legal article rather than by character count so chunk boundaries match citation boundaries, producing 829 chunks that let answers cite to article and page (Pasal 138, p. 83) for reader verification.',
+                            'Ran hybrid retrieval with dense and sparse vectors fused server-side in Qdrant via RRF plus cross-encoder reranking, reaching recall@10 of 0.73 on a 30-question golden set; reranking contributed +0.117 recall@10 at roughly 4.5 seconds per question.',
+                            'Held the system to USD 0.43 per 1,000 questions and 70% routing accuracy on 50 holdout items, and verified refusal behaviour by confirming 4 of 4 out-of-corpus questions returned a refusal instead of a fabrication.',
+                            'Gated every pull request on a retrieval evaluation that blocks any metric regression beyond 5%, designed to run without API keys or quota by freezing the corpus and falling back to sparse-only search.'
+                        ],
+                        links: [
+                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/agentic-rag-regdocs' }
+                        ]
+                    },
+                    {
+                        title: 'Card Portfolio Leakage Analysis',
+                        date: 'September 2026',
+                        tech: ['PostgreSQL', 'Docker', 'Power BI (DAX)'],
+                        bullets: [
+                            'Modeled 13.3M card transactions into a star schema on PostgreSQL running in Docker, loading 22.2M rows in 29 seconds, with a bridge table handling transactions declined for several reasons at once.',
+                            'Quantified $4.17M of declined-transaction leakage across 3.95M transactions and attributed it by who could act on it, showing only 12.8% was bank-fixable, then isolated stale card credentials as the actionable driver: card-on-file merchants declined at 0.7467% against 0.0258% for card-present, a 29x gap worth $365,061.',
+                            'Withheld channel-level fraud comparisons after finding the labeling regime changed in 2017 and fraud labels covered only 67% of rows, documenting both limits rather than shipping clean-looking charts.'
+                        ],
+                        links: [
+                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/data-analyst-portfolio/tree/main/finansial-transaction-analytics' }
+                        ]
+                    },
+                    {
+                        title: 'Does Granularity Still Matter Under QLoRA?',
+                        date: 'August 2026',
+                        tech: ['CoT Distillation', 'QLoRA', 'GSM8K'],
+                        bullets: [
+                            'Ran 14 QLoRA distillation runs across two Qwen3 students and four rationale granularities on GSM8K, holding problems, gold answers, and hyperparameters constant so rationale length was the only variable, in 5.5 GPU-hours at zero cost.',
+                            'Measured each student before distillation, a control most work in this area omits, which reversed the headline: distillation added 24.0 points to the 0.6B student while half the configurations left the 1.7B student below the model that was never trained at all.',
+                            'Reported the granularity question as a null result rather than forcing a finding, since the top two detail levels sit within between-seed variance while the more detailed one consumes 3.9x the output tokens.'
+                        ],
+                        links: [
+                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/cot-granularity-qlora' }
+                        ]
+                    },
+                    {
+                        title: 'Speech Emotion Recognition',
+                        date: 'June 2025',
+                        tech: ['CRNN (CNN + BiLSTM)', 'TensorFlow', 'Streamlit', 'Audio Processing'],
+                        bullets: [
+                            'Built a CRNN (CNN + BiLSTM) architecture over audio spectral features, reaching 68% accuracy on CREMA-D and outperforming the published CNN baseline by 10 percentage points.',
+                            'Hardened the model against noise through pitch-shifting and time-stretching augmentation, then deployed it as an interactive Streamlit web application.'
+                        ],
+                        links: [
+                            { label: 'Live Demo', icon: 'fas fa-external-link-alt', url: 'https://speech-emotion-recognition-cnn-bilstm-model.streamlit.app/' },
+                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/Speech_Emotion_Recognition_CNN_Log-Mel-Spectogram' }
+                        ]
+                    }
+                ]
+            },
+            de: {
+                skills: [
+                    { icon: 'fas fa-code', title: 'Languages', items: 'Python, SQL' },
+                    { icon: 'fas fa-cogs', title: 'Orchestration & Processing', items: 'Apache Airflow, PySpark, Databricks (Jobs, Unity Catalog, SQL warehouse), Delta Lake' },
+                    { icon: 'fas fa-project-diagram', title: 'Transformation & Modeling', items: 'dbt (incremental models, snapshots, tests), dimensional modeling, SCD Type 2, medallion architecture, ERD design' },
+                    { icon: 'fas fa-server', title: 'Databases & DevOps', items: 'PostgreSQL, Supabase, Docker, Docker Compose, Git, GitHub Actions' },
+                    { icon: 'fas fa-cloud', title: 'Cloud & AI Data', items: 'Google Cloud Platform (Vertex AI), RAG ingestion pipelines, Qdrant, Langfuse' },
+                    { icon: 'fas fa-chart-pie', title: 'Analytics & BI', items: 'Power BI, Tableau, Looker Studio, Pandas, NumPy' },
+                    { icon: 'fas fa-globe', title: 'Spoken Languages', items: 'Indonesian (native), English (conversation), Japanese (JLPT N3)' }
+                ],
+                projects: [
+                    {
+                        title: 'E-commerce Batch Data Pipeline',
+                        date: 'November 2026',
+                        tech: ['PySpark', 'dbt', 'Apache Airflow', 'Databricks', 'Delta Lake'],
+                        bullets: [
+                            'Built a daily batch pipeline that turns raw e-commerce event data into analytics-ready tables on Databricks, using PySpark to clean it into bronze and silver Delta tables and dbt to build the product dimension and incremental fact and mart tables behind a Power BI report.',
+                            'Orchestrated the pipeline with Apache Airflow on Docker Compose, simulating daily data arrival through a backfill and failing a run when the input file is missing, the upload is incomplete, or a layer comes out empty.',
+                            'Made the pipeline idempotent through partition-level overwrites in Delta Lake and incremental merges in dbt, so rerunning a date replaces its data instead of duplicating it, confirmed by a full end-to-end rerun.',
+                            'Ran dbt tests on every build covering keys, grains, accepted values, relationships, and non-negative revenue, and kept raw-data issues visible: duplicates dropped, zero prices excluded from revenue, and purchases without a cart event tracked as a daily metric instead of hidden.'
+                        ],
+                        links: [
+                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/ecommerce-de-pipeline' }
+                        ]
+                    },
+                    {
+                        title: 'Walmart Retail Data Pipeline',
+                        date: 'October 2026',
+                        tech: ['dbt', 'Apache Airflow', 'Databricks', 'Supabase'],
+                        bullets: [
+                            'Built an ELT pipeline that moves operational retail data (orders, customers, products, stores, and employees) from Supabase into Databricks, ingesting it via CDC into bronze and loading it incrementally into silver with dbt.',
+                            'Joined the source tables into a One-Big Table for business use and modeled the gold layer as a star schema with SCD Type 2 dimensions built with dbt snapshots, so dimension changes are kept as history instead of overwritten.',
+                            'Orchestrated the full run with Apache Airflow (CeleryExecutor, Redis, Docker Compose), triggering the CDC job through the Databricks SDK and halting before any transformation if ingestion fails, with dbt tests between layers so bad data stops before it reaches gold.'
+                        ],
+                        links: [
+                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/walmart_data_engineer_project' }
+                        ]
+                    },
+                    {
+                        title: 'Card Portfolio Leakage Analysis',
+                        date: 'September 2026',
+                        tech: ['PostgreSQL', 'Docker', 'Power BI (DAX)'],
+                        bullets: [
+                            'Modeled 13.3M card transactions (2010-2019) into a star schema on PostgreSQL running in Docker, loading 22.2M rows in 29 seconds and running the full SQL pipeline in under two minutes, with a bridge table for transactions declined for several reasons at once.',
+                            'Kept all business logic in SQL so every consumer reads the same definitions, and withheld channel-level fraud comparisons after finding fraud labels covered only 67% of rows and the labeling regime changed in 2017.'
+                        ],
+                        links: [
+                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/data-analyst-portfolio/tree/main/finansial-transaction-analytics' }
+                        ]
+                    },
+                    {
+                        title: 'Agentic RAG for Indonesian Regulatory Documents',
+                        date: 'September 2026',
+                        tech: ['LangGraph', 'Qdrant', 'FastAPI'],
+                        bullets: [
+                            'Chunked PP 28/2025 by legal article rather than by character count so chunk boundaries match citation boundaries, producing 829 chunks indexed as dense and sparse vectors in Qdrant for hybrid retrieval (RRF fusion plus cross-encoder reranking) that reached recall@10 of 0.73 on a 30-question golden set.',
+                            'Gated every pull request on a retrieval evaluation that blocks any metric regression beyond 5%, designed to run without API keys or quota by freezing the corpus and falling back to sparse-only search.',
+                            'Proved graceful degradation by emptying both API keys and rebuilding the containers, with the service still returning HTTP 200 and ranking the correct article first without any embedding model available.'
+                        ],
+                        links: [
+                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/agentic-rag-regdocs' }
+                        ]
+                    }
+                ]
+            },
+            da: {
+                skills: [
+                    { icon: 'fas fa-code', title: 'Languages', items: 'SQL, Python' },
+                    { icon: 'fas fa-chart-line', title: 'BI & Visualization', items: 'Power BI, Tableau, Looker Studio, Matplotlib, Seaborn, Streamlit' },
+                    { icon: 'fas fa-database', title: 'Data Modeling & SQL', items: 'PostgreSQL, ERD design, Docker, DBeaver' },
+                    { icon: 'fas fa-search-plus', title: 'Analysis', items: 'Exploratory data analysis, segmentation and clustering, normalization, data quality auditing' },
+                    { icon: 'fab fa-python', title: 'Python & Pipelines', items: 'Pandas, NumPy, Scikit-learn, Git, TensorFlow, PySpark' },
+                    { icon: 'fas fa-globe', title: 'Spoken Languages', items: 'Indonesian (native), English (conversational), Japanese (JLPT N3)' }
+                ],
+                projects: [
+                    {
+                        title: 'Card Portfolio Leakage Analysis',
+                        date: 'September 2026',
+                        tech: ['PostgreSQL', 'Docker', 'Power BI (DAX)'],
+                        bullets: [
+                            'Modeled 13.3M card transactions into a star schema on PostgreSQL running in Docker, loading 22.2M rows in 29 seconds, with a bridge table handling transactions declined for several reasons at once and all business logic kept in SQL so every consumer reads the same definitions.',
+                            'Quantified $4.17M of declined-transaction leakage and attributed it by who could act on it, showing only 12.8% was bank-fixable, then isolated stale card credentials as the actionable driver: card-on-file merchants declined at 0.7467% against 0.0258% for card-present, a 29x gap worth $365,061 across 1,941 cards.',
+                            'Withheld channel-level fraud comparisons after finding the labeling regime changed in 2017 and fraud labels covered only 67% of rows, documenting both limits rather than shipping clean-looking charts.'
+                        ],
+                        links: [
+                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/data-analyst-portfolio/tree/main/finansial-transaction-analytics' }
+                        ]
+                    },
+                    {
+                        title: 'US Hospital Trauma Access',
+                        date: 'September 2026',
+                        tech: ['PostgreSQL', 'Tableau'],
+                        bullets: [
+                            'Built a three-layer SQL pipeline (raw, staging, mart) over 8,013 hospital records, gating each layer behind verification queries that had to pass before the next ran, and normalizing 31 trauma-designation variants through an explicit mapping table.',
+                            'Showed the reassuring 18.8 km national median concealed 989 hospitals beyond 100 km, and argued for ranking states by share above 100 km rather than median, since Colorado posts a 5.9 km median while 24% of its hospitals exceed 100 km.',
+                            'Kept all business logic in SQL so Tableau received analysis-ready tables, with the workbook\'s only calculated field serving the map layer rather than any business rule.'
+                        ],
+                        links: [
+                            { label: 'Tableau Public', icon: 'fas fa-external-link-alt', url: 'https://public.tableau.com/views/USHospitalTraumaAccess/Dashboard1' }
+                        ]
+                    },
+                    {
+                        title: 'Coffee Shop Sales Analysis',
+                        date: 'September 2026',
+                        tech: ['Google Sheets', 'Looker Studio'],
+                        bullets: [
+                            'Cleaned, transformed, and aggregated 149,116 transactions across three stores entirely within Google Sheets, with no database or scripting, then surfaced the result as an interactive Looker Studio dashboard.',
+                            'Normalized weekday against weekend revenue by day count (130 against 51 days), reducing an apparent weekday advantage to under 1.2% per day and overturning the raw-total reading, and separated volume from value by showing the top-selling product was not the top revenue driver.'
+                        ],
+                        links: [
+                            { label: 'Looker Studio', icon: 'fas fa-external-link-alt', url: 'https://datastudio.google.com/reporting/dd257a9e-f591-4e20-b7d4-b4c97d23618a' }
+                        ]
+                    },
+                    {
+                        title: 'Biller Analytics Pipeline',
+                        date: 'September 2026',
+                        tech: ['Python', 'PostgreSQL', 'Tableau'],
+                        bullets: [
+                            'Built an Excel-to-warehouse pipeline for 200,000 bill-payment transactions through Python (pandas, psycopg2) into a staging layer, then derived a dimensional star schema with surrogate keys in SQL and connected Tableau live to the warehouse rather than to a static extract.',
+                            'Flagged that April held a single day of data, labeling the apparent volume drop as a coverage limit rather than a performance decline, and documented the decision to treat pending payments as unsuccessful rather than leaving it implicit.'
+                        ],
+                        links: [
+                            { label: 'Tableau Public', icon: 'fas fa-external-link-alt', url: 'https://public.tableau.com/views/Book1_17760717152110/TransactionReport' }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        function selectRole(roleKey) {
+            const data = ROLE_DATA[roleKey];
+            if (!data) return;
+
+            document.querySelectorAll('.role-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.role === roleKey);
+            });
+
+            const skillsContainer = document.getElementById('skills-container');
+            skillsContainer.innerHTML = `<div class="skills-grid">${data.skills.map(s => `
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="${s.icon}"></i></div>
+                    <h3>${s.title}</h3>
+                    <p>${s.items}</p>
+                </div>
+            `).join('')}</div>`;
+
+            const projectsContainer = document.getElementById('projects-container');
+            projectsContainer.innerHTML = `<div class="projects-grid">${data.projects.map(p => `
+                <div class="project-card">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>${p.title}</h3>
+                            <span class="project-date">${p.date}</span>
+                        </div>
+                        <ul class="project-bullets">
+                            ${p.bullets.map(b => `<li>${b}</li>`).join('')}
+                        </ul>
+                        <div class="project-tech">
+                            ${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+                        </div>
+                        <div class="project-links">
+                            ${p.links.map(l => `
+                                <a href="${l.url}" target="_blank" rel="noopener noreferrer">
+                                    <i class="${l.icon}"></i> ${l.label}
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('')}</div>`;
+        }
+
+        document.querySelectorAll('.role-btn').forEach(btn => {
+            btn.addEventListener('click', () => selectRole(btn.dataset.role));
+        });
+
         // Hamburger menu toggle
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
