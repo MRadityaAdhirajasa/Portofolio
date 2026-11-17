@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV — Muhammad Raditya Adhirajasa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --blue: #1d4ed8; --blue-dark: #1e3a8a; --ink: #0f172a; --muted: #475569; --line: #e2e8f0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif; color: var(--ink); background: #f1f5f9; line-height: 1.5; font-size: 14px; }
+        a { color: var(--blue); text-decoration: none; }
+
+        .bar { position: sticky; top: 0; z-index: 5; background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid var(--line); }
+        .bar-inner { max-width: 860px; margin: 0 auto; padding: 0.7rem 1.2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+        .back { font-weight: 600; font-size: 0.95rem; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.55rem 1.1rem; border-radius: 8px; background: var(--blue); color: #fff; font-weight: 600; font-size: 0.92rem; }
+        .btn:hover { background: var(--blue-dark); }
+
+        .page { max-width: 860px; margin: 1.5rem auto 3rem; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 3rem 3.2rem; }
+        header { text-align: center; margin-bottom: 1.2rem; }
+        h1 { font-size: 1.7rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--blue-dark); }
+        header p { color: var(--muted); font-size: 0.9rem; }
+        h2 { font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); border-bottom: 1.5px solid var(--blue); padding-bottom: 0.15rem; margin: 1.1rem 0 0.5rem; }
+        .row { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+        .row strong { font-weight: 600; }
+        .row em, .row span { color: var(--muted); }
+        .item { margin-bottom: 0.6rem; break-inside: avoid; }
+        ul { padding-left: 1.15rem; margin-top: 0.15rem; }
+        li { margin-bottom: 0.15rem; }
+        .skills p { margin-bottom: 0.1rem; }
+
+        @media (max-width: 640px) { .page { padding: 1.5rem 1.2rem; margin-top: 0.8rem; border-radius: 0; border-left: 0; border-right: 0; } }
+
+        @page { size: A4; margin: 11mm 13mm; }
+        @media print {
+            body { background: #fff; font-size: 8.8pt; line-height: 1.36; }
+            h1 { font-size: 16pt; }
+            h2 { break-after: avoid; margin-top: 0.8rem; }
+            .row { flex-wrap: nowrap; }
+            .row span { white-space: nowrap; }
+            .bar { display: none; }
+            .page { max-width: none; margin: 0; padding: 0; border: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bar">
+        <div class="bar-inner">
+            <a class="back" href="index.html"><i class="fas fa-arrow-left"></i> Back to portfolio</a>
+            <a class="btn" href="document/CV_RadityaAdhirajasa.pdf" download><i class="fas fa-download"></i> Download CV (PDF)</a>
+        </div>
+    </div>
+
+    <main class="page">
+        <header>
+            <h1>Muhammad Raditya Adhirajasa</h1>
+            <p>Bandar Lampung, Indonesia | Open to relocation | <a href="mailto:radityaadhirajasaa@gmail.com">radityaadhirajasaa@gmail.com</a></p>
+            <p><a href="https://mradityaadhirajasa.github.io/Portofolio/">mradityaadhirajasa.github.io/Portofolio</a> |<a href="https://www.linkedin.com/in/muhammad-raditya-adhirajasa/">linkedin.com/in/muhammad-raditya-adhirajasa</a> | <a href="https://github.com/MRadityaAdhirajasa">github.com/MRadityaAdhirajasa</a></p>
+        </header>
+
+        <h2>Summary</h2>
+        <p>Computer Science graduate with data internships at Telkom Indonesia and BPS RI. At Telkom, modeled the BKPM enterprise registry with SQL cleaning and ingestion pipelines that cleared duplicate and inconsistent records for downstream analytics, built a RAG pipeline on Vertex AI, and benchmarked Gemini fine-tuning against AutoML baselines. At BPS RI, built reproducible Python pipelines and a validated K-Means model for social aid targeting. Personal projects add Databricks pipelines orchestrated with Apache Airflow that use PySpark and dbt to turn raw data into tested, analytics-ready tables, and SQL analysis of 13.3M card transactions. Seeking a Data Engineer or Data Scientist role where pipelines are tested and safe to rerun, and analysis is held to statistical rigor.</p>
+
+        <h2>Technical Skills</h2>
+        <div class="skills">
+            <p><strong>Languages:</strong> Python, SQL</p>
+            <p><strong>Orchestration &amp; Processing:</strong> Apache Airflow, PySpark, Databricks (Jobs, Unity Catalog, SQL warehouse), Delta Lake</p>
+            <p><strong>Transformation &amp; Modeling:</strong> dbt (incremental models, snapshots, tests), dimensional modeling, SCD Type 2, medallion architecture, ERD design</p>
+            <p><strong>Databases &amp; DevOps:</strong> PostgreSQL, Supabase, NoSQL, Docker, Docker Compose, Git, GitHub Actions</p>
+            <p><strong>Machine Learning &amp; Statistics:</strong> Scikit-learn, TensorFlow, PyTorch, deep learning, LLM fine-tuning (QLoRA, PEFT), classification, clustering</p>
+            <p><strong>Analytics &amp; Visualization:</strong> Power BI, Tableau, Looker Studio, Streamlit, Pandas, NumPy, Matplotlib, Seaborn</p>
+            <p><strong>Cloud &amp; Generative AI:</strong> Google Cloud Platform (Vertex AI), RAG pipeline design, LLM evaluation, Qdrant, Langfuse</p>
+            <p><strong>Spoken Languages:</strong> Indonesian (native), English (conversation), Japanese (JLPT N3)</p>
+        </div>
+
+        <h2>Education</h2>
+        <div class="item">
+            <div class="row"><strong>University of Lampung</strong><span>Bandar Lampung, Indonesia</span></div>
+            <div class="row"><em>Bachelor of Computer Science | GPA: 3.60 / 4.00</em><span>2021 – 2025</span></div>
+            <ul>
+                <li>Thesis: <em>Implementation of a CRNN with BiLSTM for Speech Emotion Recognition</em>, reaching 68% accuracy on CREMA-D and outperforming the published CNN baseline by 10 percentage points.</li>
+                <li>Relevant coursework: Database Systems, Data Structures, Machine Learning, Artificial Intelligence.</li>
+            </ul>
+        </div>
+
+        <h2>Experience</h2>
+        <div class="item">
+            <div class="row"><strong>Telkom Indonesia</strong><span>Jakarta, Indonesia</span></div>
+            <div class="row"><em>Data Science Intern</em><span>December 2025 – June 2026</span></div>
+            <ul>
+                <li>Modeled the BKPM enterprise registry end-to-end, authoring an ERD across 18 entities and writing SQL cleaning and ingestion pipelines that eliminated duplicate and inconsistent records blocking downstream analytics.</li>
+                <li>Engineered a Retrieval-Augmented Generation pipeline on Vertex AI (GCP) to automate first-line OSS BKPM licensing support, owning the ingestion, chunking, and retrieval layers over 50 scraped pages and FAQ records and lifting answer accuracy from 61% to 88% on a 50-question internal evaluation set.</li>
+                <li>Instrumented pipelines with Langfuse and published Looker Studio dashboards that converted raw evaluation traces into per-release quality metrics stakeholders could read without engineering support.</li>
+                <li>Benchmarked candidate models on Vertex AI by fine-tuning Gemini against AutoML baselines for a binary customer-deposit classification case, then recommended the winning configuration on cost-versus-accuracy grounds.</li>
+                <li>Designed and executed an LLM-as-a-Judge evaluation framework for Sekretariat Negara, scoring outputs on 5 criteria across 60 test prompts to catch grounding and alignment failures before release to a government-facing application.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <div class="row"><strong>Badan Pusat Statistik RI (Statistics Indonesia)</strong><span>Jakarta, Indonesia</span></div>
+            <div class="row"><em>Data Science Intern</em><span>June 2024 – August 2024</span></div>
+            <ul>
+                <li>Built reproducible Python pipelines (Pandas, NumPy) for national socio-economic survey data, applying feature engineering and dimensionality reduction across 300,000 household records and 32 high-cardinality demographic variables.</li>
+                <li>Developed a K-Means segmentation model to automate social-aid targeting, resolving households into 3 actionable clusters by asset ownership and dependency ratio.</li>
+                <li>Validated cluster integrity against Silhouette, Calinski-Harabasz, and Davies-Bouldin scores, then translated the segments into a scalable targeting workflow recommended to program stakeholders.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <div class="row"><strong>University of Lampung</strong><span>Bandar Lampung, Indonesia</span></div>
+            <div class="row"><em>Teaching Assistant: Artificial Intelligence, Declarative Programming, Computer Networks</em><span>August 2023 – June 2024</span></div>
+            <ul>
+                <li>Taught hands-on lab sessions to 100+ students across three semesters, converting machine learning, logic programming, and networking theory into runnable Python implementations.</li>
+                <li>Authored the Python curriculum for the Artificial Intelligence course, building custom datasets and reproducible Scikit-learn and TensorFlow templates that were adopted as the primary lab material for subsequent cohorts.</li>
+            </ul>
+        </div>
+
+        <h2>Projects</h2>
+        <div class="item">
+            <div class="row"><strong>E-commerce Batch Data Pipeline | PySpark, dbt, Apache Airflow, Databricks</strong><span>November 2026</span></div>
+            <a href="https://github.com/MRadityaAdhirajasa/ecommerce-de-pipeline">github.com/MRadityaAdhirajasa/ecommerce-de-pipeline</a>
+            <ul>
+                <li>Built a daily batch pipeline that turns raw e-commerce event data into analytics-ready tables on Databricks, using PySpark to clean it into bronze and silver Delta tables and dbt to build the product dimension and incremental fact and mart tables behind a Power BI report.</li>
+                <li>Orchestrated the pipeline with Apache Airflow on Docker Compose, simulating daily data arrival through a backfill and failing a run when the input file is missing, the upload is incomplete, or a layer comes out empty.</li>
+                <li>Made the pipeline idempotent through partition-level overwrites in Delta Lake and incremental merges in dbt, so rerunning a date replaces its data instead of duplicating it, confirmed by a full end-to-end rerun.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <div class="row"><strong>Walmart Retail Data Pipeline | dbt, Apache Airflow, Databricks, Supabase</strong><span>October 2026</span></div>
+            <a href="https://github.com/MRadityaAdhirajasa/walmart_data_engineer_project">github.com/MRadityaAdhirajasa/walmart_data_engineer_project</a>
+            <ul>
+                <li>Built an ELT pipeline that moves operational retail data from Supabase into Databricks, ingesting it via CDC into bronze, loading it incrementally into silver with dbt, and modeling gold as a star schema with SCD Type 2 dimensions built with dbt snapshots.</li>
+                <li>Orchestrated the full run with Apache Airflow (CeleryExecutor, Redis, Docker Compose), halting before any transformation if ingestion fails, with dbt tests between layers so bad data stops before it reaches gold.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <div class="row"><strong>Card Portfolio Leakage Analysis | PostgreSQL, Docker, Power BI (DAX)</strong><span>September 2026</span></div>
+            <a href="https://github.com/MRadityaAdhirajasa/data-analyst-portfolio/tree/main/finansial-transaction-analytics">github.com/MRadityaAdhirajasa/data-analyst-portfolio</a>
+            <ul>
+                <li>Modeled 13.3M card transactions into a star schema on PostgreSQL running in Docker, loading 22.2M rows in 29 seconds, with a bridge table handling transactions declined for several reasons at once.</li>
+                <li>Quantified $4.17M of declined-transaction leakage and attributed it by who could act on it, showing only 12.8% was bank-fixable, then isolated stale card credentials as the actionable driver: a 29x decline-rate gap worth $365,061.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <div class="row"><strong>Agentic RAG for Indonesian Regulatory Documents | LangGraph, Qdrant, FastAPI</strong><span>September 2026</span></div>
+            <a href="https://github.com/MRadityaAdhirajasa/agentic-rag-regdocs">github.com/MRadityaAdhirajasa/agentic-rag-regdocs</a>
+            <ul>
+                <li>Built a cyclic 7-node LangGraph agent over PP 28/2025 and OSS BKPM FAQs, where a verify node scores each drafted answer against its retrieved context and routes failures back to retrieval under parameters the code forces to differ.</li>
+                <li>Chunked the regulation by legal article so chunk boundaries match citation boundaries, producing 829 chunks, and ran hybrid dense-sparse retrieval fused in Qdrant via RRF with cross-encoder reranking to reach recall@10 of 0.73 on a 30-question golden set.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <div class="row"><strong>Does Granularity Still Matter Under QLoRA? | CoT Distillation, GSM8K</strong><span>August 2026</span></div>
+            <a href="https://github.com/MRadityaAdhirajasa/cot-granularity-qlora">github.com/MRadityaAdhirajasa/cot-granularity-qlora</a>
+            <ul>
+                <li>Ran 14 QLoRA distillation runs across two Qwen3 students and four rationale granularities on GSM8K, holding problems, gold answers, and hyperparameters constant so rationale length was the only variable.</li>
+                <li>Measured each student before distillation, a control that reversed the headline: distillation added 24.0 points to the 0.6B student while half the configurations left the 1.7B student below the model that was never trained at all.</li>
+            </ul>
+        </div>
+        <div class="item">
+            <div class="row"><strong>LLM-as-a-Judge Evaluation Pipeline | Langfuse, Gemini</strong><span>March 2026</span></div>
+            <a href="https://github.com/MRadityaAdhirajasa/llm-judge-langfuse">github.com/MRadityaAdhirajasa/llm-judge-langfuse</a>
+            <ul>
+                <li>Built a repeatable evaluation pipeline for an Indonesian public-services QA agent, pushing rubric scores to Langfuse as dataset experiments so each prompt or model change is measured against previous runs instead of judged by impression.</li>
+                <li>Showed a high judge score can be meaningless, with the rubric returning 4.93 of 5 while the underlying citations pointed at unrelated sites, then traced it to a rubric that never sees retrieved sources.</li>
+            </ul>
+        </div>
+    </main>
+</body>
+</html>

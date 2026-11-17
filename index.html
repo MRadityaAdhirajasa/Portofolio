@@ -3,1351 +3,544 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Raditya Adhirajasa</title>
+    <title>Raditya Adhirajasa — Data Portfolio</title>
+    <meta name="description" content="Portfolio of Muhammad Raditya Adhirajasa: data engineering, data science, and AI/ML projects.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --blue: #1d4ed8;
+            --blue-dark: #1e3a8a;
+            --blue-soft: #eff4ff;
+            --blue-line: #c7d7fe;
+            --ink: #0f172a;
+            --muted: #475569;
+            --line: #e2e8f0;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
         }
 
-        :root {
-            --primary-blue: #3498db;
-            --hover-blue: #2980b9;
-            --light-gray: #f8f9fa;
-            --dark-text: #2c3e50;
-            --white: #ffffff;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.7;
-            color: var(--dark-text);
-            scroll-behavior: smooth;
-            background-color: var(--white);
+            line-height: 1.65;
+            color: var(--ink);
+            background: var(--bg);
         }
+
+        a { color: var(--blue); }
+        .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
 
         /* Navbar */
         nav {
-            background: var(--white);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
+            position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line);
         }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-            letter-spacing: -0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark-text);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-blue);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-blue);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: var(--primary-blue);
-            margin: 3px 0;
-            transition: 0.3s;
-            border-radius: 2px;
-        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 60px; }
+        .logo { font-weight: 700; color: var(--blue); text-decoration: none; letter-spacing: -0.3px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.92rem; font-weight: 500; }
+        .nav-links a:hover { color: var(--blue); }
+        .hamburger { display: none; background: none; border: 0; font-size: 1.25rem; color: var(--blue); cursor: pointer; padding: 0.4rem; }
 
         /* Sections */
-        section {
-            padding: 5rem 0;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        #home {
-            margin-top: 80px;
-            min-height: calc(100vh - 80px);
-            display: flex;
-            align-items: center;
-        }
-
-        /* Home Section */
-        .home-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        /* REVISI: Foto Profil LEBIH BESAR dan JARAK LEBIH DEKAT */
-        .profile-image {
-            text-align: center;
-            position: relative;
-            display: inline-block;
-            padding: 0;
-        }
-
-        .profile-image img {
-            width: 340px;  /* DARI 280px JADI 340px - LEBIH BESAR */
-            height: 340px; /* DARI 280px JADI 340px - LEBIH BESAR */
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--white);
-            box-shadow: 0 15px 40px rgba(52, 152, 219, 0.25);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            z-index: 2;
-            background: var(--white);
-        }
-
-        /* Efek background frame yang ter-offset LEBIH DEKAT */
-        .profile-image::before {
-            content: '';
-            position: absolute;
-            top: 15px;  /* DARI 25px JADI 15px - LEBIH DEKAT */
-            left: 15px; /* DARI 25px JADI 15px - LEBIH DEKAT */
-            width: 340px;  /* SAMAKAN DENGAN FOTO */
-            height: 340px; /* SAMAKAN DENGAN FOTO */
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--hover-blue) 100%);
-            z-index: 1;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.2);
-        }
-
-        /* Hover effect - foto bergerak ke atas kiri, frame ke bawah kanan */
-        .profile-image:hover img {
-            transform: translate(-8px, -8px);
-            box-shadow: 0 20px 50px rgba(52, 152, 219, 0.35);
-        }
-
-        .profile-image:hover::before {
-            transform: translate(8px, 8px);
-            background: linear-gradient(135deg, var(--hover-blue) 0%, var(--primary-blue) 100%);
-        }
-
-        .home-content h1 {
-            font-size: 3.2rem;
-            margin-bottom: 1rem;
-            color: var(--dark-text);
-            line-height: 1.2;
-            font-weight: 700;
-        }
-
-        .home-content h1 span {
-            color: var(--primary-blue);
-        }
-
-        .home-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            color: #7f8c8d;
-            max-width: 90%;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.2rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: var(--primary-blue);
-            color: var(--white);
-            border-radius: 50%;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
-        }
-
-        .social-links a:hover {
-            background: var(--hover-blue);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(52, 152, 219, 0.4);
-        }
-
-        /* Education & Experience Sections */
-        #education, #experience, #skills, #tools {
-            background: var(--light-gray);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 3.5rem;
-            color: var(--dark-text);
-            position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--primary-blue);
-            margin: 0.8rem auto 0;
-            border-radius: 2px;
-        }
-
-        .education-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.4s ease;
-            border: 1px solid rgba(0,0,0,0.03);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .education-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(52, 152, 219, 0.15);
-        }
-
-        .education-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .education-header h3 {
-            font-size: 1.8rem;
-            color: var(--dark-text);
-            margin-bottom: 0.3rem;
-        }
-
-        .education-header .degree {
-            color: var(--primary-blue);
-            font-weight: 600;
-            font-size: 1.2rem;
-        }
-
-        .education-header .duration {
-            background: rgba(52, 152, 219, 0.1);
-            color: var(--primary-blue);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        .education-details {
-            margin-top: 1.5rem;
-        }
-
-        .education-details p {
-            margin-bottom: 1rem;
-            color: #7f8c8d;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .education-details p i {
-            color: var(--primary-blue);
-            width: 20px;
-        }
-
-        .courses-list {
-            margin-top: 1rem;
-        }
-
-        .courses-list strong {
-            color: var(--dark-text);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .courses-list ul {
-            list-style: none;
-            padding-left: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .courses-list li {
-            background: rgba(52, 152, 219, 0.1);
-            color: var(--primary-blue);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* Experience Cards */
-        .experience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .experience-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.4s ease;
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .experience-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(52, 152, 219, 0.15);
-        }
-
-        .experience-header {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid rgba(52, 152, 219, 0.1);
-        }
-
-        .experience-header h3 {
-            font-size: 1.8rem;
-            color: var(--dark-text);
-            margin-bottom: 0.5rem;
-        }
-
-        .experience-header .company {
-            color: var(--primary-blue);
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .experience-header .duration {
-            color: #7f8c8d;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .experience-details ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .experience-details li {
-            position: relative;
-            padding-left: 2rem;
-            margin-bottom: 1rem;
-            color: #7f8c8d;
-            line-height: 1.6;
-        }
-
-        .experience-details li::before {
-            content: '➤';
-            position: absolute;
-            left: 0;
-            color: var(--primary-blue);
-            font-weight: bold;
-        }
-
-        /* TA Sub-sections */
-        .ta-courses {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px dashed rgba(52, 152, 219, 0.2);
-        }
-
-        .ta-course-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .ta-course-item h4 {
-            color: var(--dark-text);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .ta-course-item .course-duration {
-            color: var(--primary-blue);
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 0.8rem;
-        }
-
-        .ta-course-item ul {
-            margin-top: 0.5rem;
-        }
-
-        .ta-course-item li {
-            font-size: 0.95rem;
-            padding-left: 1.5rem;
-        }
-
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .skill-card {
-            background: var(--white);
-            padding: 2.2rem 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.4s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .skill-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(52, 152, 219, 0.15);
-            border-color: rgba(52, 152, 219, 0.1);
-        }
-
-        .skill-icon {
-            font-size: 3.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .skill-card:hover .skill-icon {
-            transform: scale(1.1);
-        }
-
-        .skill-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.6rem;
-            color: var(--dark-text);
-        }
-
-        .skill-card p {
-            color: #7f8c8d;
-            font-size: 0.95rem;
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .project-card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.4s ease;
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(52, 152, 219, 0.15);
-            border-color: rgba(52, 152, 219, 0.1);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.03);
-        }
-
-        .project-content {
-            padding: 1.8rem;
-        }
-
-        .project-content h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            color: var(--dark-text);
-        }
-
-        .project-content p {
-            color: #7f8c8d;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-tag {
-            background: rgba(52, 152, 219, 0.1);
-            color: var(--primary-blue);
-            padding: 0.3rem 0.9rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .tech-tag:hover {
-            background: var(--primary-blue);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1.2rem;
-        }
-
-        .project-links a {
-            text-decoration: none;
-            color: var(--primary-blue);
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            padding: 0.3rem 0;
-            position: relative;
-        }
-
-        .project-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-blue);
-            transition: width 0.3s ease;
-        }
-
-        .project-links a:hover {
-            color: var(--hover-blue);
-            gap: 0.8rem;
-        }
-
-        .project-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-text);
-            color: var(--white);
-            text-align: center;
-            padding: 3rem 0;
-            margin-top: 4rem;
-        }
-
-        footer p {
-            max-width: 90%;
-            margin: 0 auto;
-            opacity: 0.8;
-        }
+        section { padding: 4.5rem 0; scroll-margin-top: 60px; }
+        section.alt { background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+        .section-title { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 2rem; }
+        .section-title::after { content: ''; display: block; width: 36px; height: 3px; background: var(--blue); border-radius: 2px; margin-top: 0.6rem; }
+
+        /* Hero */
+        #summary { padding: 4.5rem 0 5rem; }
+        .hero { display: grid; grid-template-columns: 220px 1fr; gap: 3.5rem; align-items: center; }
+        .hero img { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 4px solid var(--blue-soft); outline: 1px solid var(--blue-line); }
+        .eyebrow { color: var(--blue); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.6rem; }
+        .hero h1 { font-size: 2.4rem; line-height: 1.15; letter-spacing: -0.8px; margin-bottom: 1rem; }
+        .hero p.lead { color: var(--muted); font-size: 1.02rem; max-width: 62ch; margin-bottom: 1.8rem; }
+        .connect { display: flex; align-items: center; flex-wrap: wrap; gap: 0.7rem; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.55rem;
+            padding: 0.65rem 1.3rem; border-radius: 8px;
+            background: var(--blue); color: #fff; border: 1px solid var(--blue);
+            font: inherit; font-weight: 600; font-size: 0.95rem; text-decoration: none; cursor: pointer;
+            transition: background 0.15s;
+        }
+        .btn:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
+        .icon-link {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 42px; height: 42px; border-radius: 8px;
+            border: 1px solid var(--line); color: var(--blue); text-decoration: none; font-size: 1.05rem;
+            transition: background 0.15s, border-color 0.15s;
+        }
+        .icon-link:hover { background: var(--blue-soft); border-color: var(--blue-line); }
+
+        /* Entries (education + experience) */
+        .entry { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 1.6rem 1.8rem; }
+        .entry + .entry { margin-top: 1rem; }
+        .entry-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.3rem 1rem; }
+        .entry h3 { font-size: 1.1rem; }
+        .entry .when { color: var(--blue); font-size: 0.88rem; font-weight: 600; white-space: nowrap; }
+        .entry .sub { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.9rem; }
+        .entry .label { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.4rem; }
+        .entry ul { padding-left: 1.1rem; color: var(--muted); font-size: 0.95rem; }
+        .entry li { margin-bottom: 0.45rem; }
+        .entry li::marker { color: var(--blue); }
+
+        /* Skills */
+        .hint { color: var(--muted); font-size: 0.92rem; margin: -1rem 0 1.5rem; }
+        .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; align-items: start; }
+        .skills details { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; transition: border-color 0.15s; }
+        .skills details:hover, .skills details[open] { border-color: var(--blue); }
+        .skills summary {
+            list-style: none; cursor: pointer;
+            display: flex; align-items: center; gap: 0.8rem;
+            padding: 0.95rem 1.1rem; font-weight: 600;
+        }
+        .skills summary::-webkit-details-marker { display: none; }
+        .skills summary .ico { color: var(--blue); width: 1.2rem; text-align: center; }
+        .skills summary .chev {
+            margin-left: auto; width: 26px; height: 26px; border-radius: 50%;
+            display: inline-flex; align-items: center; justify-content: center;
+            background: var(--blue-soft); color: var(--blue); font-size: 0.7rem;
+            transition: transform 0.2s;
+        }
+        .skills details[open] .chev { transform: rotate(180deg); background: var(--blue); color: #fff; }
+        .chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+        .skills .chips { padding: 0 1.1rem 1.1rem; }
+        .chip { background: var(--blue-soft); color: var(--blue-dark); border-radius: 6px; padding: 0.2rem 0.6rem; font-size: 0.82rem; font-weight: 500; }
+
+        /* Projects */
+        .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.8rem; }
+        .filter {
+            padding: 0.45rem 1rem; border-radius: 999px; border: 1px solid var(--line);
+            background: var(--bg); color: var(--muted); font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+        }
+        .filter:hover { border-color: var(--blue); color: var(--blue); }
+        .filter.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+        .filter .count { opacity: 0.7; font-weight: 500; margin-left: 0.25rem; }
+
+        .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 1.4rem; }
+        .card { display: flex; flex-direction: column; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; transition: border-color 0.15s; }
+        .card:hover { border-color: var(--blue); }
+        .thumb { aspect-ratio: 16 / 9; background: var(--blue-soft); border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: center; color: var(--blue-line); font-size: 2rem; }
+        .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+        .thumb img.contain { object-fit: contain; object-position: center; background: #fff; }
+        .card-body { padding: 1.2rem 1.3rem 1.3rem; display: flex; flex-direction: column; flex: 1; }
+        .meta { display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600; color: var(--blue); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.45rem; }
+        .meta .date { color: var(--muted); text-transform: none; letter-spacing: 0; }
+        .card h3 { font-size: 1.05rem; line-height: 1.35; margin-bottom: 0.6rem; }
+        .card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; }
+        .card .chips { margin-bottom: 1rem; }
+        .links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 1.1rem; }
+        .links a { font-size: 0.88rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; }
+        .links a:hover { text-decoration: underline; }
+
+        /* Motion: one entrance on load, a gentle rise as things scroll into view, small hover lifts */
+        @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+        .hero > * { animation: rise 0.6s ease both; }
+        .hero > *:nth-child(2) { animation-delay: 0.12s; }
+        .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease, border-color 0.15s, box-shadow 0.2s; }
+        .reveal.in { opacity: 1; transform: none; }
+        .section-title::after { width: 0; transition: width 0.6s ease 0.2s; }
+        .section-title.in::after { width: 36px; }
+        .card.in:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(29, 78, 216, 0.10); }
+        .thumb img { transition: transform 0.4s ease; }
+        .card:hover .thumb img { transform: scale(1.03); }
+        .thumb { overflow: hidden; }
+        .btn, .icon-link { transition: background 0.15s, border-color 0.15s, transform 0.15s; }
+        .btn:hover, .icon-link:hover { transform: translateY(-2px); }
+        .skills details[open] .chips { animation: rise 0.25s ease both; }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .reveal { opacity: 1; transform: none; }
+            .section-title::after { width: 36px; }
+        }
+
+        footer { border-top: 1px solid var(--line); padding: 2rem 0; color: var(--muted); font-size: 0.88rem; text-align: center; }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
+            .hamburger { display: block; }
             .nav-links {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                flex-direction: column;
-                background-color: var(--white);
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
-                padding: 2rem 0;
-                gap: 1.5rem;
+                display: none; position: absolute; top: 60px; left: 0; right: 0;
+                flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 0.5rem 1.5rem 1rem;
             }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .home-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 3rem;
-            }
-
-            .home-content h1 {
-                font-size: 2.2rem;
-            }
-
-            .home-content p {
-                max-width: 100%;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
-
-            .section-title {
-                font-size: 2.2rem;
-            }
-
-            /* REVISI: Ukuran foto untuk mobile - LEBIH BESAR */
-            .profile-image img {
-                width: 280px;  /* DARI 220px JADI 280px */
-                height: 280px; /* DARI 220px JADI 280px */
-            }
-
-            .profile-image::before {
-                width: 280px;  /* DARI 220px JADI 280px */
-                height: 280px; /* DARI 220px JADI 280px */
-                top: 15px;  /* DARI 20px JADI 15px - LEBIH DEKAT */
-                left: 15px; /* DARI 20px JADI 15px - LEBIH DEKAT */
-            }
-
-            .experience-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .education-card {
-                padding: 2rem;
-            }
-
-            .education-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-                gap: 1.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .home-content h1 {
-                font-size: 1.8rem;
-            }
-
-            .home-content p {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            /* REVISI: Ukuran foto untuk small mobile - LEBIH BESAR */
-            .profile-image img {
-                width: 240px;  /* DARI 180px JADI 240px */
-                height: 240px; /* DARI 180px JADI 240px */
-            }
-
-            .profile-image::before {
-                width: 240px;  /* DARI 180px JADI 240px */
-                height: 240px; /* DARI 180px JADI 240px */
-                top: 12px;  /* DARI 15px JADI 12px - LEBIH DEKAT */
-                left: 12px; /* DARI 15px JADI 12px - LEBIH DEKAT */
-                border-width: 3px;
-            }
-        }
-        /* Role Selector Buttons */
-        .role-selector {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .role-btn {
-            padding: 0.75rem 1.6rem;
-            border: 2px solid var(--primary-blue);
-            background: var(--white);
-            color: var(--primary-blue);
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: inherit;
-        }
-
-        .role-btn:hover,
-        .role-btn.active {
-            background: var(--primary-blue);
-            color: var(--white);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.35);
-        }
-
-        .role-placeholder {
-            text-align: center;
-            padding: 3rem 1.5rem;
-            background: var(--white);
-            border-radius: 15px;
-            border: 2px dashed rgba(52, 152, 219, 0.3);
-            color: #7f8c8d;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        #projects .role-placeholder {
-            background: var(--light-gray);
-        }
-
-        .role-placeholder i {
-            font-size: 2.2rem;
-            color: var(--primary-blue);
-            margin-bottom: 0.8rem;
-            display: block;
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 0.8rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .project-date {
-            background: rgba(52, 152, 219, 0.1);
-            color: var(--primary-blue);
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        .role-cv-download {
-            text-align: center;
-            margin: 2.5rem 0 0.5rem;
-        }
-
-        .role-subsection-title {
-            text-align: center;
-            font-size: 2rem;
-            margin: 3rem 0 2rem;
-            color: var(--dark-text);
-        }
-
-        /* Gaya tombol CV yang konsisten dengan ikon sosmed */
-        .cv-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.85rem 1.8rem;
-            background: var(--primary-blue);
-            color: var(--white);
-            border: 2px solid var(--primary-blue);
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
-        }
-
-        .cv-button:hover {
-            background: var(--hover-blue);
-            border-color: var(--hover-blue);
-            color: var(--white);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 18px rgba(52, 152, 219, 0.45);
-        }
-
-        /* Responsif untuk mobile */
-        @media (max-width: 480px) {
-            .cv-button {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
-            }
-            .cv-button i {
-                font-size: 1rem;
-            }
+            .nav-links.active { display: flex; }
+            .nav-links a { display: block; padding: 0.6rem 0; }
+            section { padding: 3.2rem 0; }
+            #summary { padding: 2.5rem 0 3.2rem; }
+            .hero { grid-template-columns: 1fr; gap: 1.8rem; }
+            .hero img { width: 150px; height: 150px; }
+            .hero h1 { font-size: 1.85rem; }
+            .skills { grid-template-columns: 1fr; }
+            .entry { padding: 1.3rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav>
-        <div class="nav-container">
-            <div class="logo">Portfolio</div>
+        <div class="wrap nav-container">
+            <a class="logo" href="#summary">Raditya Adhirajasa</a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="#summary">Summary</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="hamburger" type="button" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
         </div>
     </nav>
 
-    <!-- Home Section -->
-    <section id="home">
-        <div class="home-container">
-            <div class="profile-image">
-                <img src="document/foto3.jpg" alt="Profile Photo">
-            </div>
-            <div class="home-content">
-                <h1>Hello, I'm <span>Muhammad Raditya Adhirajasa</span></h1>
-                <p>Computer Science graduate with hands-on data impact at <strong>Telkom Indonesia</strong>—where I lifted Vertex AI RAG answer accuracy from 61% to 88% for OSS BKPM, built a 5-criteria LLM-as-a-Judge framework for Sekretariat Negara, modeled an 18-entity enterprise registry with SQL pipelines, and shipped Looker Studio quality dashboards. Proven across the full data stack, from clustering 300,000+ national survey records at <strong>BPS RI</strong> to engineering tested data pipelines and analytics on 13.3M+ records.</p>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/muhammad-raditya-adhirajasa/" target="_blank" title="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://github.com/MRadityaAdhirajasa" target="_blank" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="mailto:radityaadhirajasaa@gmail.com" title="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
+    <!-- Summary -->
+    <section id="summary">
+        <div class="wrap hero">
+            <img src="media/foto-profile.jpg" width="220" height="220" alt="Muhammad Raditya Adhirajasa">
+            <div>
+                <p class="eyebrow">Data Engineering &middot; Data Science</p>
+                <h1>Muhammad Raditya Adhirajasa</h1>
+                <p class="lead">Computer Science graduate with data internships at <strong>Telkom Indonesia</strong> and <strong>BPS RI</strong>. At Telkom I modeled the BKPM enterprise registry with SQL cleaning and ingestion pipelines, built a RAG pipeline on Vertex AI that lifted answer accuracy from 61% to 88%, and benchmarked Gemini fine-tuning against AutoML baselines. At BPS RI I built reproducible Python pipelines and a validated K-Means model over 300,000 household records. My personal projects add Databricks pipelines with Airflow, PySpark, and dbt, and SQL analysis of 13.3M card transactions.</p>
+                <div class="connect">
+                    <a class="btn" href="cv.html"><i class="fas fa-file-lines"></i> View CV</a>
+                    <a class="icon-link" href="https://www.linkedin.com/in/muhammad-raditya-adhirajasa/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="icon-link" href="https://github.com/MRadityaAdhirajasa" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a class="icon-link" href="mailto:radityaadhirajasaa@gmail.com" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education">
-        <h2 class="section-title">Education</h2>
-        <div class="education-card">
-            <div class="education-header">
-                <div>
+    <!-- Education -->
+    <section id="education" class="alt">
+        <div class="wrap">
+            <h2 class="section-title">Education</h2>
+            <div class="entry">
+                <div class="entry-head">
                     <h3>University of Lampung</h3>
-                    <p class="degree">Bachelor of Computer Science | GPA: 3.60 / 4.00</p>
+                    <span class="when">2021 – 2025</span>
                 </div>
-                <span class="duration"><i class="fas fa-calendar-alt"></i> 2021 – 2025</span>
-            </div>
-            <div class="education-details">
-                <p><i class="fas fa-map-marker-alt"></i> Bandar Lampung, Indonesia</p>
-                <p><i class="fas fa-book-open"></i> <span><strong>Thesis:</strong> <em>Implementation of a CRNN with BiLSTM for Speech Emotion Recognition</em></span></p>
-                <div class="courses-list">
-                    <strong>Relevant Coursework:</strong>
-                    <ul>
-                        <li>Machine Learning</li>
-                        <li>Artificial Intelligence</li>
-                        <li>Database Systems</li>
-                        <li>Data Structures</li>
-                    </ul>
-                </div>
+                <p class="sub">Bachelor of Computer Science &middot; GPA 3.60 / 4.00 &middot; Bandar Lampung, Indonesia</p>
+                <p class="label">Thesis: Implementation of a CRNN with BiLSTM for Speech Emotion Recognition</p>
+                <ul>
+                    <li>Built a CRNN (CNN + BiLSTM) model that classifies a speaker's emotion from audio spectral features.</li>
+                    <li>Reached 68% accuracy on the CREMA-D dataset, 10 percentage points above the published CNN baseline.</li>
+                    <li>Hardened the model against noise with pitch-shifting and time-stretching augmentation, then deployed it as an interactive Streamlit web app.</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- Experience -->
     <section id="experience">
-        <h2 class="section-title">Experience</h2>
-        <div class="experience-grid">
-            <!-- Telkom Indonesia -->
-            <div class="experience-card">
-                <div class="experience-header">
-                    <h3>Data Science Intern</h3>
-                    <p class="company">
-                        <i class="fas fa-building"></i> Telkom Indonesia — Jakarta, Indonesia
-                    </p>
-                    <p class="duration">
-                        <i class="fas fa-calendar-alt"></i> December 2025 – June 2026
-                    </p>
+        <div class="wrap">
+            <h2 class="section-title">Experience</h2>
+
+            <div class="entry">
+                <div class="entry-head">
+                    <h3>Data Science Intern &middot; Telkom Indonesia</h3>
+                    <span class="when">Dec 2025 – Jun 2026</span>
                 </div>
-                <div class="experience-details">
-                    <ul>
-                        <li>Built a GCP Vertex AI RAG pipeline for OSS BKPM licensing support (lifting answer accuracy from 61% to 88%) and led PageIndex vectorless retrieval R&amp;D on table-heavy RPJMD documents for the West Java Provincial Government.</li>
-                        <li>Designed a 5-criteria LLM-as-a-Judge evaluation framework across 60 test prompts for Sekretariat Negara, benchmarked Gemini fine-tuning against AutoML baselines, and prototyped Chain-of-Thought distillation experiments.</li>
-                        <li>Modeled an 18-entity BKPM enterprise ERD with SQL cleaning and ingestion pipelines, and instrumented Langfuse traces into Looker Studio quality dashboards for stakeholders.</li>
-                    </ul>
-                </div>
+                <p class="sub">Jakarta, Indonesia</p>
+                <ul>
+                    <li>Modeled an 18-entity BKPM enterprise ERD with SQL cleaning and ingestion pipelines, and instrumented Langfuse traces into Looker Studio quality dashboards for stakeholders.</li>
+                    <li>Built a GCP Vertex AI RAG pipeline for OSS BKPM licensing support (lifting answer accuracy from 61% to 88%) and led PageIndex vectorless retrieval R&amp;D on table-heavy RPJMD documents for the West Java Provincial Government.</li>
+                    <li>Designed a 5-criteria LLM-as-a-Judge evaluation framework across 60 test prompts for Sekretariat Negara, benchmarked Gemini fine-tuning against AutoML baselines, and prototyped Chain-of-Thought distillation experiments.</li>
+                </ul>
             </div>
 
-            <!-- BPS RI -->
-            <div class="experience-card">
-                <div class="experience-header">
-                    <h3>Data Science Intern</h3>
-                    <p class="company">
-                        <i class="fas fa-building"></i> Badan Pusat Statistik RI (Statistics Indonesia) — Jakarta, Indonesia
-                    </p>
-                    <p class="duration">
-                        <i class="fas fa-calendar-alt"></i> June 2024 – August 2024
-                    </p>
+            <div class="entry">
+                <div class="entry-head">
+                    <h3>Data Science Intern &middot; Badan Pusat Statistik RI (Statistics Indonesia)</h3>
+                    <span class="when">Jun 2024 – Aug 2024</span>
                 </div>
-                <div class="experience-details">
-                    <ul>
-                        <li>Built reproducible Python (Pandas, NumPy) feature-engineering and dimensionality-reduction pipelines across 300,000 national socio-economic household records and 32 demographic variables.</li>
-                        <li>Developed and validated a 3-cluster K-Means segmentation model (Silhouette, Calinski-Harabasz, Davies-Bouldin) to automate scalable social-aid targeting workflows.</li>
-                    </ul>
-                </div>
+                <p class="sub">Jakarta, Indonesia</p>
+                <ul>
+                    <li>Built reproducible Python (Pandas, NumPy) feature-engineering and dimensionality-reduction pipelines across 300,000 national socio-economic household records and 32 demographic variables.</li>
+                    <li>Developed and validated a 3-cluster K-Means segmentation model (Silhouette, Calinski-Harabasz, Davies-Bouldin) to automate scalable social-aid targeting workflows.</li>
+                </ul>
             </div>
 
-            <!-- Teaching Assistant -->
-            <div class="experience-card">
-                <div class="experience-header">
-                    <h3>Teaching Assistant</h3>
-                    <p class="company">
-                        <i class="fas fa-graduation-cap"></i> University of Lampung — Bandar Lampung, Indonesia
-                    </p>
-                    <p class="duration">
-                        <i class="fas fa-calendar-alt"></i> August 2023 – June 2024
-                    </p>
+            <div class="entry">
+                <div class="entry-head">
+                    <h3>Teaching Assistant &middot; University of Lampung</h3>
+                    <span class="when">Aug 2023 – Jun 2024</span>
                 </div>
-                <div class="experience-details">
-                    <p style="color: var(--dark-text); font-weight: 600; margin-bottom: 1rem;">Courses: Artificial Intelligence, Declarative Programming, Computer Networks</p>
-                    <ul>
-                        <li>Taught hands-on Python lab sessions and debugging clinics to 100+ students across three semesters, reaching a 100% completion rate in Declarative Programming.</li>
-                        <li>Authored the Artificial Intelligence Python lab curriculum with custom datasets and reusable Scikit-learn and TensorFlow templates adopted by subsequent cohorts.</li>
-                    </ul>
-                </div>
+                <p class="sub">Artificial Intelligence, Declarative Programming, Computer Networks</p>
+                <ul>
+                    <li>Taught hands-on Python lab sessions and debugging clinics to 100+ students across three semesters, reaching a 100% completion rate in Declarative Programming.</li>
+                    <li>Authored the Artificial Intelligence Python lab curriculum with custom datasets and reusable Scikit-learn and TensorFlow templates adopted by subsequent cohorts.</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Role-Based Skills, CV & Portfolio Section -->
-    <section id="skills">
-        <h2 class="section-title">Skills &amp; Portfolio by Role</h2>
-        <div class="role-selector" role="tablist" aria-label="Select Role">
-            <button type="button" class="role-btn" data-role="ae"><i class="fas fa-robot"></i> AI Engineer</button>
-            <button type="button" class="role-btn" data-role="ds"><i class="fas fa-brain"></i> Data Scientist</button>
-            <button type="button" class="role-btn" data-role="de"><i class="fas fa-server"></i> Data Engineer</button>
-            <button type="button" class="role-btn" data-role="da"><i class="fas fa-chart-line"></i> Data Analyst</button>
-        </div>
-        <div id="skills-container">
-            <div class="role-placeholder">
-                <i class="fas fa-hand-pointer"></i>
-                Select a role above to view skills, download the tailored CV, and explore portfolio projects.
-            </div>
+    <!-- Skills -->
+    <section id="skills" class="alt">
+        <div class="wrap">
+            <h2 class="section-title">Skills</h2>
+            <p class="hint"><i class="fas fa-hand-pointer"></i> Click a category to see the tools inside.</p>
+            <div class="skills" id="skills-container"></div>
         </div>
     </section>
 
-    <!-- Projects Section (populated when a role is selected) -->
-    <section id="projects" style="display: none;">
-        <h2 class="section-title">Portfolio Projects</h2>
-        <div id="projects-container"></div>
+    <!-- Projects -->
+    <section id="projects">
+        <div class="wrap">
+            <h2 class="section-title">Projects</h2>
+            <div class="filters" id="filters"></div>
+            <div class="projects" id="projects-container"></div>
+        </div>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; Muhammad Raditya Adhirajasa | Bandar Lampung, Indonesia (Open to relocation: Jakarta / Jabodetabek) | radityaadhirajasaa@gmail.com</p>
+        <div class="wrap">&copy; Muhammad Raditya Adhirajasa &middot; Bandar Lampung, Indonesia (open to relocation: Jakarta / Jabodetabek)</div>
     </footer>
 
     <script>
-        const ROLE_DATA = {
-            ae: {
-                label: 'AI Engineer',
-                cv: 'document/CV_RadityaAdhirajasa_en_AE.pdf',
-                skills: [
-                    { icon: 'fas fa-code', title: 'Languages', items: 'Python, SQL' },
-                    { icon: 'fas fa-network-wired', title: 'LLM Systems & Retrieval', items: 'LangGraph, RAG, Qdrant vector database, prompt engineering, Vertex AI RAG Engine, Langfuse tracing, LLM-as-a-judge evaluation' },
-                    { icon: 'fas fa-microchip', title: 'Model Training', items: 'PyTorch, TensorFlow, Scikit-learn, QLoRA & PEFT fine-tuning, Gemini fine-tuning, Chain-of-Thought distillation' },
-                    { icon: 'fas fa-cloud-upload-alt', title: 'Engineering & Deployment', items: 'Google Cloud Platform, FastAPI, Pydantic, Docker, Streamlit, Git, PostgreSQL, Hugging Face Spaces' },
-                    { icon: 'fas fa-globe', title: 'Spoken Languages', items: 'Indonesian (native), English (conversation), Japanese (JLPT N3)' }
-                ],
-                projects: [
-                    {
-                        title: 'Agentic RAG for Indonesian Regulatory Documents',
-                        date: 'September 2026',
-                        tech: ['LangGraph', 'Qdrant', 'FastAPI'],
-                        summary: 'Built a cyclic 7-node LangGraph agent over PP 28/2025 and OSS BKPM FAQs using legal-article chunking (829 chunks) for exact article-and-page citations and hybrid dense-sparse Qdrant retrieval with RRF and cross-encoder reranking (0.73 recall@10). Added a verification node that routes failed drafts back to retrieval with modified parameters, keeping cost at $0.43 per 1,000 questions while refusing 100% of out-of-corpus queries.',
-                        links: [
-                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/agentic-rag-regdocs' }
-                        ]
-                    },
-                    {
-                        title: 'LLM-as-a-Judge Evaluation Pipeline',
-                        date: 'March 2026',
-                        tech: ['Langfuse', 'Gemini'],
-                        summary: 'Developed a repeatable evaluation pipeline for an Indonesian public-services QA agent that logs rubric scores to Langfuse as dataset experiments to track prompt and model iterations. Exposed critical rubric blind spots where ungrounded citations still scored 4.93/5, establishing source-aware groundedness checks and human-agreement validation before release.',
-                        links: [
-                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/llm-judge-langfuse' }
-                        ]
-                    },
-                    {
-                        title: 'The Faithfulness Cost of CoT Compression',
-                        date: 'August 2026',
-                        tech: ['QLoRA', 'Qwen3', 'Counterfactual Evaluation'],
-                        summary: 'Ran 16 QLoRA fine-tuning runs across two Qwen3 students and four Chain-of-Thought supervision densities, testing causal reasoning faithfulness through three counterfactual evaluations rather than final accuracy alone. Showed that faithfulness drops with overly long supervision—moderate CoT reached 97–99% mistake sensitivity versus 76–83% for long CoT at nearly 4x lower token cost.',
-                        links: [
-                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/cot-faithfulness-cost' }
-                        ]
-                    },
-                    {
-                        title: 'Does Granularity Still Matter Under QLoRA?',
-                        date: 'August 2026',
-                        tech: ['CoT Distillation', 'QLoRA', 'GSM8K'],
-                        summary: 'Conducted 14 controlled QLoRA distillation runs on GSM8K holding problems, gold answers, and hyperparameters constant so rationale length was the sole variable. Benchmarking against pre-distillation baselines revealed that half of the configurations left the larger student model below its untrained baseline.',
-                        links: [
-                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/cot-granularity-qlora' }
-                        ]
-                    },
-                    {
-                        title: 'RAG Chatbot with Inline LLM-as-a-Judge',
-                        date: 'February 2026',
-                        tech: ['Vertex AI RAG Engine', 'Streamlit', 'Docker'],
-                        summary: 'Shipped a Dockerized OSS BKPM licensing chatbot on Hugging Face Spaces with per-IP rate limiting and runtime credential reconstruction. Paired Gemini 2.5 Flash-Lite retrieval with inline Gemini 2.5 Pro judge scoring across 5 criteria beneath each chat bubble, demonstrating why unweighted rubric averages mislead without source-groundedness weighting.',
-                        links: [
-                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/rag-chatbot-llm-judge' }
-                        ]
-                    }
-                ]
+        const SKILLS = [
+            { icon: 'fas fa-code', title: 'Languages', items: ['Python', 'SQL'] },
+            { icon: 'fas fa-cogs', title: 'Orchestration & Processing', items: ['Apache Airflow', 'PySpark', 'Databricks (Jobs, Unity Catalog, SQL warehouse)', 'Delta Lake'] },
+            { icon: 'fas fa-project-diagram', title: 'Transformation & Modeling', items: ['dbt (incremental models, snapshots, tests)', 'Dimensional modeling', 'SCD Type 2', 'Medallion architecture', 'ERD design'] },
+            { icon: 'fas fa-database', title: 'Databases & DevOps', items: ['PostgreSQL', 'Supabase', 'NoSQL', 'Docker', 'Docker Compose', 'Git', 'GitHub Actions', 'DBeaver'] },
+            { icon: 'fas fa-brain', title: 'Machine Learning & Statistics', items: ['Scikit-learn', 'TensorFlow', 'PyTorch', 'Deep learning', 'LLM fine-tuning (QLoRA, PEFT)', 'OpenCV', 'Classification', 'Clustering'] },
+            { icon: 'fas fa-chart-bar', title: 'Analytics & Visualization', items: ['Power BI', 'Tableau', 'Looker Studio', 'Streamlit', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Google Sheets'] },
+            { icon: 'fas fa-network-wired', title: 'LLM Systems & Retrieval', items: ['LangGraph', 'RAG', 'Qdrant vector database', 'Prompt engineering', 'Vertex AI RAG Engine', 'Langfuse tracing', 'LLM-as-a-judge evaluation', 'Google Cloud Platform', 'FastAPI'] },
+            { icon: 'fas fa-globe', title: 'Spoken Languages', items: ['Indonesian (native)', 'English (conversation)', 'Japanese (JLPT N3)'] }
+        ];
+
+        const GH = 'https://github.com/MRadityaAdhirajasa/';
+        const gh = repo => ({ label: 'GitHub', icon: 'fab fa-github', url: GH + repo });
+        const ext = (label, url) => ({ label, icon: 'fas fa-arrow-up-right-from-square', url });
+
+        // type: 'data' | 'aiml'. date: 'YYYY-MM' (used for sorting, newest first).
+        const PROJECTS = [
+            {
+                title: 'E-commerce Batch Data Pipeline', date: '2026-11', type: 'data',
+                tech: ['PySpark', 'dbt', 'Apache Airflow', 'Databricks', 'Delta Lake'],
+                summary: 'A daily batch pipeline that turns raw e-commerce event data into tested, analytics-ready tables on Databricks. PySpark cleans events into bronze and silver Delta tables, dbt builds the incremental fact and mart models behind a Power BI report, and Apache Airflow orchestrates each run. The pipeline is idempotent, so rerunning a date replaces its data instead of duplicating it, which a full end-to-end rerun confirmed, and dbt tests run on every build while raw-data issues stay visible rather than hidden.',
+                links: [gh('ecommerce-de-pipeline')]
             },
-            ds: {
-                label: 'Data Scientist',
-                cv: 'document/CV_RadityaAdhirajasa_en_DS.pdf',
-                skills: [
-                    { icon: 'fas fa-code', title: 'Languages', items: 'Python, SQL' },
-                    { icon: 'fas fa-brain', title: 'Machine Learning & Statistics', items: 'Scikit-learn, TensorFlow, PyTorch, deep learning, LLM fine-tuning (QLoRA, PEFT), OpenCV, classification, clustering' },
-                    { icon: 'fas fa-database', title: 'Data Modeling & Pipelines', items: 'PostgreSQL, Git, NoSQL, ERD design, Docker, Pandas, DBeaver' },
-                    { icon: 'fas fa-chart-bar', title: 'Analytics & Visualization', items: 'Power BI, Tableau, Looker Studio, Streamlit, Matplotlib, Seaborn, Google Sheets' },
-                    { icon: 'fas fa-cloud', title: 'Generative AI & Cloud', items: 'Google Cloud Platform, RAG pipeline design, LLM evaluation, Gemini fine-tuning, Chain-of-Thought distillation, Langfuse' },
-                    { icon: 'fas fa-globe', title: 'Spoken Languages', items: 'Indonesian (native), English (conversation), Japanese (JLPT N3)' }
-                ],
-                projects: [
-                    {
-                        title: 'Agentic RAG for Indonesian Regulatory Documents',
-                        date: 'September 2026',
-                        tech: ['LangGraph', 'Qdrant', 'FastAPI'],
-                        summary: 'Built a cyclic 7-node LangGraph agent over PP 28/2025 and OSS BKPM FAQs with legal-article chunking (829 chunks), Qdrant RRF hybrid retrieval, and cross-encoder reranking (+0.117 recall@10 gain to 0.73). Achieved 70% routing accuracy at $0.43 per 1,000 queries, verified 100% out-of-corpus refusal, and gated pull requests on automated retrieval regression checks.',
-                        links: [
-                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/agentic-rag-regdocs' }
-                        ]
-                    },
-                    {
-                        title: 'Card Portfolio Leakage Analysis',
-                        date: 'September 2026',
-                        tech: ['PostgreSQL', 'Docker', 'Power BI (DAX)'],
-                        summary: 'Modeled 13.3M card transactions into a Dockerized PostgreSQL star schema and quantified $4.17M in declined-transaction leakage across 3.95M records. Isolated stale card-on-file credentials as the primary bank-fixable driver—revealing a 29x higher decline rate worth $365,061—while documenting 2017 fraud-labeling shifts to prevent misleading channel comparisons.',
-                        links: [
-                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/data-analyst-portfolio/tree/main/finansial-transaction-analytics' }
-                        ]
-                    },
-                    {
-                        title: 'Does Granularity Still Matter Under QLoRA?',
-                        date: 'August 2026',
-                        tech: ['CoT Distillation', 'QLoRA', 'GSM8K'],
-                        summary: 'Ran 14 controlled QLoRA distillation experiments across two Qwen3 students and four rationale granularities on GSM8K in 5.5 GPU-hours. Pre-distillation controls showed a +24.0 point gain on the 0.6B student while half the runs degraded the 1.7B student below baseline, with top detail levels sitting within seed variance despite 3.9x higher token usage.',
-                        links: [
-                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/cot-granularity-qlora' }
-                        ]
-                    },
-                    {
-                        title: 'Speech Emotion Recognition',
-                        date: 'June 2025',
-                        tech: ['CRNN (CNN + BiLSTM)', 'TensorFlow', 'Streamlit', 'Audio Processing'],
-                        summary: 'Designed a CRNN (CNN + BiLSTM) architecture over audio spectral features, reaching 68% accuracy on CREMA-D and outperforming the published CNN baseline by 10 percentage points. Hardened the model against acoustic noise using pitch-shifting and time-stretching augmentation and deployed it as an interactive Streamlit web application.',
-                        links: [
-                            { label: 'Live Demo', icon: 'fas fa-external-link-alt', url: 'https://speech-emotion-recognition-cnn-bilstm-model.streamlit.app/' },
-                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/Speech_Emotion_Recognition_CNN_Log-Mel-Spectogram' }
-                        ]
-                    }
-                ]
+            {
+                title: 'Walmart Retail Data Pipeline', date: '2026-10', type: 'data',
+                tech: ['dbt', 'Apache Airflow', 'Databricks', 'Supabase'],
+                summary: 'An ELT pipeline that moves operational retail data (orders, customers, products, stores, and employees) from Supabase into Databricks, ingesting it via CDC into bronze and loading it incrementally into silver with dbt. The gold layer is a star schema with SCD Type 2 dimensions built from dbt snapshots, so changes are kept as history instead of overwritten. Apache Airflow runs the whole flow and halts before any transformation if ingestion fails, with dbt tests between layers so bad data stops before it reaches gold.',
+                links: [gh('walmart_data_engineer_project')]
             },
-            de: {
-                label: 'Data Engineer',
-                cv: 'document/CV_RadityaAdhirajasa_en_DE.pdf',
-                skills: [
-                    { icon: 'fas fa-code', title: 'Languages', items: 'Python, SQL' },
-                    { icon: 'fas fa-cogs', title: 'Orchestration & Processing', items: 'Apache Airflow, PySpark, Databricks (Jobs, Unity Catalog, SQL warehouse), Delta Lake' },
-                    { icon: 'fas fa-project-diagram', title: 'Transformation & Modeling', items: 'dbt (incremental models, snapshots, tests), dimensional modeling, SCD Type 2, medallion architecture, ERD design' },
-                    { icon: 'fas fa-server', title: 'Databases & DevOps', items: 'PostgreSQL, Supabase, Docker, Docker Compose, Git, GitHub Actions' },
-                    { icon: 'fas fa-cloud', title: 'Cloud & AI Data', items: 'Google Cloud Platform (Vertex AI), RAG ingestion pipelines, Qdrant, Langfuse' },
-                    { icon: 'fas fa-chart-pie', title: 'Analytics & BI', items: 'Power BI, Tableau, Looker Studio, Pandas, NumPy' },
-                    { icon: 'fas fa-globe', title: 'Spoken Languages', items: 'Indonesian (native), English (conversation), Japanese (JLPT N3)' }
-                ],
-                projects: [
-                    {
-                        title: 'E-commerce Batch Data Pipeline',
-                        date: 'November 2026',
-                        tech: ['PySpark', 'dbt', 'Apache Airflow', 'Databricks', 'Delta Lake'],
-                        summary: 'Built an idempotent daily batch pipeline orchestrated with Apache Airflow on Docker Compose that cleans raw e-commerce events into bronze and silver Delta tables via PySpark and builds incremental dbt fact and mart models for Power BI. Enforced partition-level overwrites, backfill completeness checks, and automated dbt tests on every build.',
-                        links: [
-                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/ecommerce-de-pipeline' }
-                        ]
-                    },
-                    {
-                        title: 'Walmart Retail Data Pipeline',
-                        date: 'October 2026',
-                        tech: ['dbt', 'Apache Airflow', 'Databricks', 'Supabase'],
-                        summary: 'Engineered an ELT pipeline moving operational retail data from Supabase into Databricks via CDC into bronze, incremental dbt models in silver, and an SCD Type 2 star schema with One-Big-Table marts in gold. Orchestrated runs with Apache Airflow (CeleryExecutor, Redis) and dbt quality gates that halt transformations before bad data reaches gold.',
-                        links: [
-                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/walmart_data_engineer_project' }
-                        ]
-                    },
-                    {
-                        title: 'Card Portfolio Leakage Analysis',
-                        date: 'September 2026',
-                        tech: ['PostgreSQL', 'Docker', 'Power BI (DAX)'],
-                        summary: 'Modeled 13.3M card transactions (2010–2019) into a Dockerized PostgreSQL star schema, loading 22.2M rows in 29 seconds and executing the full SQL pipeline in under two minutes with a multi-reason decline bridge table. Centralized all business definitions in SQL and documented historical fraud-label coverage constraints.',
-                        links: [
-                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/data-analyst-portfolio/tree/main/finansial-transaction-analytics' }
-                        ]
-                    },
-                    {
-                        title: 'Agentic RAG for Indonesian Regulatory Documents',
-                        date: 'September 2026',
-                        tech: ['LangGraph', 'Qdrant', 'FastAPI'],
-                        summary: 'Chunked PP 28/2025 by legal article into 829 dense and sparse Qdrant vectors for RRF hybrid retrieval and cross-encoder reranking (0.73 recall@10). Gated pull requests on quota-free retrieval evaluations blocking >5% regressions and proved graceful degradation to sparse-only search when external API keys are unavailable.',
-                        links: [
-                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/agentic-rag-regdocs' }
-                        ]
-                    }
-                ]
+            {
+                title: 'Agentic RAG for Indonesian Regulatory Documents', date: '2026-09', type: 'aiml',
+                tech: ['LangGraph', 'Qdrant', 'FastAPI'],
+                summary: 'A question-answering agent over PP 28/2025 and OSS BKPM FAQs that cites the exact article and page behind each answer. It is a cyclic 7-node LangGraph agent whose verify node scores every draft against its retrieved context and sends failures back to retrieval with different parameters. Chunking by legal article (829 chunks) with hybrid Qdrant retrieval and cross-encoder reranking reached recall@10 of 0.73, at USD 0.43 per 1,000 questions, and all 4 out-of-corpus test questions were refused instead of fabricated.',
+                links: [gh('agentic-rag-regdocs')]
             },
-            da: {
-                label: 'Data Analyst',
-                cv: 'document/CV_RadityaAdhirajasa_en_DA.pdf',
-                skills: [
-                    { icon: 'fas fa-code', title: 'Languages', items: 'SQL, Python' },
-                    { icon: 'fas fa-chart-line', title: 'BI & Visualization', items: 'Power BI, Tableau, Looker Studio, Matplotlib, Seaborn, Streamlit' },
-                    { icon: 'fas fa-database', title: 'Data Modeling & SQL', items: 'PostgreSQL, ERD design, Docker, DBeaver' },
-                    { icon: 'fas fa-search-plus', title: 'Analysis', items: 'Exploratory data analysis, segmentation and clustering, normalization, data quality auditing' },
-                    { icon: 'fab fa-python', title: 'Python & Pipelines', items: 'Pandas, NumPy, Scikit-learn, Git, TensorFlow, PySpark' },
-                    { icon: 'fas fa-globe', title: 'Spoken Languages', items: 'Indonesian (native), English (conversational), Japanese (JLPT N3)' }
-                ],
-                projects: [
-                    {
-                        title: 'Card Portfolio Leakage Analysis',
-                        date: 'September 2026',
-                        tech: ['PostgreSQL', 'Docker', 'Power BI (DAX)'],
-                        summary: 'Modeled 13.3M card transactions into a PostgreSQL star schema in Docker with centralized SQL business logic and multi-reason decline bridge tables. Quantified $4.17M in declined-transaction leakage, isolating stale card-on-file credentials as a $365,061 bank-fixable driver (29x higher decline rate across 1,941 cards) while auditing 2017 fraud-labeling limits.',
-                        links: [
-                            { label: 'GitHub', icon: 'fab fa-github', url: 'https://github.com/MRadityaAdhirajasa/data-analyst-portfolio/tree/main/finansial-transaction-analytics' }
-                        ]
-                    },
-                    {
-                        title: 'US Hospital Trauma Access',
-                        date: 'September 2026',
-                        tech: ['PostgreSQL', 'Tableau'],
-                        summary: 'Built a three-layer verified SQL pipeline (raw, staging, mart) over 8,013 US hospital records, normalizing 31 trauma-designation variants to feed Tableau. Showed that an 18.8 km national median concealed 989 hospitals beyond 100 km, making the case for ranking state trauma access by tail share (>100 km) rather than median distance.',
-                        links: [
-                            { label: 'Tableau Public', icon: 'fas fa-external-link-alt', url: 'https://public.tableau.com/views/USHospitalTraumaAccess/Dashboard1' }
-                        ]
-                    },
-                    {
-                        title: 'Coffee Shop Sales Analysis',
-                        date: 'September 2026',
-                        tech: ['Google Sheets', 'Looker Studio'],
-                        summary: 'Cleaned, transformed, and aggregated 149,116 transactions across three stores entirely within Google Sheets and surfaced insights in an interactive Looker Studio dashboard. Normalized weekday versus weekend revenue by day count (130 vs. 51 days) to overturn raw-total bias (<1.2% daily gap) and separated unit volume from revenue value.',
-                        links: [
-                            { label: 'Looker Studio', icon: 'fas fa-external-link-alt', url: 'https://datastudio.google.com/reporting/dd257a9e-f591-4e20-b7d4-b4c97d23618a' }
-                        ]
-                    },
-                    {
-                        title: 'Biller Analytics Pipeline',
-                        date: 'September 2026',
-                        tech: ['Python', 'PostgreSQL', 'Tableau'],
-                        summary: 'Built an Excel-to-PostgreSQL warehouse pipeline for 200,000 bill-payment transactions using Python (Pandas, psycopg2), deriving a surrogate-key star schema in SQL connected live to Tableau. Flagged a single-day April data cutoff to prevent misinterpreting volume drops and explicitly documented pending-payment status rules.',
-                        links: [
-                            { label: 'Tableau Public', icon: 'fas fa-external-link-alt', url: 'https://public.tableau.com/views/Book1_17760717152110/TransactionReport' }
-                        ]
-                    }
-                ]
+            {
+                title: 'Card Portfolio Leakage Analysis', date: '2026-09', type: 'data',
+                tech: ['PostgreSQL', 'Docker', 'Power BI (DAX)'],
+                summary: 'An analysis of where a card portfolio loses money to declined transactions, and which part the bank can actually fix. I modeled 13.3M card transactions into a PostgreSQL star schema in Docker and quantified $4.17M of declined-transaction leakage, of which only 12.8% was bank-fixable. Stale card-on-file credentials turned out to be the actionable driver: a 29x higher decline rate worth $365,061. Channel-level fraud comparisons were withheld because fraud labels covered only 67% of rows and the labeling regime changed in 2017.',
+                links: [gh('data-analyst-portfolio/tree/main/finansial-transaction-analytics')]
+            },
+            {
+                title: 'US Hospital Trauma Access', date: '2026-09', type: 'data',
+                tech: ['PostgreSQL', 'Tableau'],
+                summary: 'Measures how far US hospitals sit from the nearest major trauma center. A three-layer SQL pipeline (raw, staging, mart) over 8,013 hospital records gates each layer behind verification queries and normalizes 31 trauma-designation variants before feeding Tableau. The reassuring 18.8 km national median concealed 989 hospitals beyond 100 km, which makes the case for ranking states by their share above 100 km rather than by median distance.',
+                links: [ext('Tableau Public', 'https://public.tableau.com/views/USHospitalTraumaAccess/Dashboard1')]
+            },
+            {
+                title: 'Biller Analytics Pipeline', date: '2026-09', type: 'data',
+                tech: ['Python', 'PostgreSQL', 'Tableau'],
+                summary: 'An Excel-to-warehouse pipeline for 200,000 bill-payment transactions. Python (pandas, psycopg2) loads the data into a staging layer, SQL derives a star schema with surrogate keys, and Tableau connects live to the warehouse rather than to a static extract. The analysis flags that April held a single day of data, so the apparent volume drop is a coverage limit rather than a performance decline, and documents the decision to treat pending payments as unsuccessful.',
+                links: [ext('Tableau Public', 'https://public.tableau.com/views/Book1_17760717152110/TransactionReport')]
+            },
+            {
+                title: 'Coffee Shop Sales Analysis', date: '2026-09', type: 'data',
+                tech: ['Google Sheets', 'Looker Studio'],
+                summary: 'A sales analysis for a three-store coffee chain done entirely in Google Sheets, with no database or scripting, and published as an interactive Looker Studio dashboard over 149,116 transactions. Normalizing weekday against weekend revenue by day count (130 against 51 days) cut an apparent weekday advantage to under 1.2% per day, and separating volume from value showed the top-selling product was not the top revenue driver.',
+                links: [ext('Looker Studio', 'https://datastudio.google.com/reporting/dd257a9e-f591-4e20-b7d4-b4c97d23618a')]
+            },
+            {
+                title: 'The Faithfulness Cost of CoT Compression', date: '2026-08', type: 'aiml',
+                tech: ['QLoRA', 'Qwen3', 'Counterfactual Evaluation'],
+                summary: 'A study of whether a distilled model\'s stated reasoning actually causes its answer. Across 16 QLoRA fine-tuning runs on two Qwen3 students and four chain-of-thought supervision densities, I measured faithfulness with three counterfactual tests rather than final-answer accuracy alone. The trade-off ran opposite to the hypothesis: long-CoT students scored 76-83% on mistake sensitivity against 97-99% for moderate CoT, while costing 3.9x the tokens for 2.84 accuracy points.',
+                links: [gh('cot-faithfulness-cost')]
+            },
+            {
+                title: 'Does Granularity Still Matter Under QLoRA?', date: '2026-08', type: 'aiml',
+                tech: ['CoT Distillation', 'QLoRA', 'GSM8K'],
+                summary: 'Tests whether the level of detail in a teacher\'s rationale changes what a student model learns. I ran 14 QLoRA distillation runs on GSM8K with problems, gold answers, and hyperparameters held constant so rationale length was the only variable. Measuring each student before distillation reversed the headline: distillation added 24.0 points to the 0.6B student, but half the configurations left the 1.7B student below the model that was never trained. The granularity question itself is reported as a null result.',
+                links: [gh('cot-granularity-qlora')]
+            },
+            {
+                title: 'LLM-as-a-Judge Evaluation Pipeline', date: '2026-03', type: 'aiml',
+                tech: ['Langfuse', 'Gemini'],
+                summary: 'A repeatable evaluation pipeline for an Indonesian public-services QA agent, built so each prompt or model change is measured against previous runs instead of judged by impression. Rubric scores are pushed to Langfuse as dataset experiments. The work showed a high judge score can be meaningless: the rubric returned 4.93 of 5 while the citations pointed at unrelated sites, because it never sees the retrieved sources. Human-agreement and cross-judge validation are specified as prerequisites before any score drives a decision.',
+                links: [gh('llm-judge-langfuse')]
+            },
+            {
+                title: 'RAG Chatbot with Inline LLM-as-a-Judge', date: '2026-02', type: 'aiml',
+                tech: ['Vertex AI RAG Engine', 'Streamlit', 'Docker'],
+                summary: 'An OSS BKPM licensing chatbot that scores its own output in production. A stronger judge model rates each answer on 5 criteria and shows the scores as a card beneath the chat bubble rather than in a separate dashboard. The inline scores exposed a weakness in the rubric itself, since a useless answer still scored full marks on coherence, showing that a plain average across criteria misleads. Shipped on Hugging Face Spaces via Docker with per-IP rate limiting at 15 chats per day.',
+                links: [gh('rag-chatbot-llm-judge')]
+            },
+            {
+                title: 'Smart Waste Classification System', date: '2025-11', type: 'aiml',
+                tech: ['YOLOv8', 'Streamlit Cloud'],
+                summary: 'A waste detector meant to make sorting easier from a single photo. I fine-tuned YOLOv8 on a custom waste dataset, using targeted augmentation to counter severe class imbalance and improve detection accuracy, then deployed it as a CPU-only inference service on Streamlit Cloud so it runs without any GPU dependency.',
+                links: [ext('Live Demo', 'https://waste-detection-yolov8.streamlit.app/'), gh('garbage-detection-yolov8')]
+            },
+            {
+                title: 'Real-Time Privacy Preservation Module', date: '2025-11', type: 'aiml',
+                tech: ['OpenCV', 'YOLOv8-Face', 'NumPy'],
+                summary: 'A CCTV face-anonymization tool for data-privacy compliance that runs in real time on standard CPU hardware. Replacing Haar Cascades with YOLOv8-Face made detection more reliable on side-profile and low-light frames, and a distance-aware Gaussian blur scales its radius to the size of each detected face.',
+                links: [gh('Real-Time-Privacy-Blur-Face-Anonymization-')]
+            },
+            {
+                title: 'Pistachio Species Classification', date: '2025-11', type: 'aiml',
+                tech: ['Custom CNN', 'TensorFlow/Keras', 'OpenCV'],
+                summary: 'An image classifier that tells pistachio species apart, built as a CNN from scratch in TensorFlow/Keras rather than from a pretrained model. Strict train, validation, and test splits prevent leakage, and image augmentation (rotation, shift, zoom) narrowed the gap between training and validation accuracy.',
+                links: [ext('Google Colab', 'https://colab.research.google.com/drive/13izQ9UD_kCgcyYAaQ1l5XI3qc5RtRexN?usp=sharing')]
+            },
+            {
+                title: 'Tokopedia Review Scraper', date: '2025-11', type: 'data',
+                tech: ['Selenium', 'BeautifulSoup'],
+                summary: 'A scraper that collects product reviews from Tokopedia for later analysis. Selenium WebDriver automates the browser to get through lazy-loading infinite scroll and multi-level pagination, and BeautifulSoup parses usernames, review text, and ratings out of the HTML. Custom user-agents and driver configuration keep it stable across long sessions.',
+                links: [gh('Tokopedia-Scraping-using-Selenium-and-BeautifulSoup')]
+            },
+            {
+                title: 'Hadoop Sentiment Analysis', date: '2025-11', type: 'data',
+                tech: ['Hadoop Streaming', 'MapReduce', 'Naive Bayes'],
+                summary: 'A distributed text-processing pipeline on Hadoop Streaming that runs preprocessing, tokenization, and word-frequency extraction as mapper and reducer stages. Sentiment is classified with Naive Bayes implemented from scratch on the distributed probability counts rather than through a library call, and word clouds compare the language patterns of each sentiment label.',
+                links: [gh('Hadoop-Sentiment-Analysis')]
+            },
+            {
+                title: 'Interactive Sentiment Analysis Pipeline', date: '2025-10', type: 'aiml',
+                tech: ['Streamlit', 'Scikit-learn', 'Bahasa Indonesia NLP'],
+                summary: 'A Streamlit app that lets non-technical users run a full Indonesian-language sentiment experiment without writing code, from ingestion and automatic labeling through training, evaluation, and real-time inference. Feature-extraction methods and Scikit-learn classifiers are configurable, and the processed datasets and model artifacts can be downloaded so results are reproducible.',
+                links: [gh('streamlit-indonesian-sentiment-pipeline')]
+            },
+            {
+                title: 'Speech Emotion Recognition', date: '2025-06', type: 'aiml',
+                tech: ['CRNN (CNN + BiLSTM)', 'TensorFlow', 'Streamlit'],
+                summary: 'My undergraduate thesis: a model that recognizes a speaker\'s emotion from audio. The CRNN (CNN + BiLSTM) architecture over audio spectral features reached 68% accuracy on CREMA-D, outperforming the published CNN baseline by 10 percentage points. Pitch-shifting and time-stretching augmentation hardened it against noise, and it is deployed as an interactive Streamlit web app.',
+                links: [ext('Live Demo', 'https://speech-emotion-recognition-cnn-bilstm-model.streamlit.app/'), gh('Speech_Emotion_Recognition_CNN_Log-Mel-Spectogram')]
+            },
+            {
+                title: 'Book Recommendation System', date: '2025-02', type: 'aiml',
+                tech: ['SVD', 'TF-IDF', 'Collaborative Filtering'],
+                summary: 'A hybrid recommender that combines collaborative filtering (SVD over a user-item matrix) with content-based filtering (TF-IDF and cosine similarity). The collaborative side captures latent reader preferences and improves on a popularity baseline, while author-similarity recommendations cover the cold-start case where a user has no rating history.',
+                links: [gh('Book_Recommendation_System')]
+            },
+            {
+                title: 'Air Quality Analysis Dashboard', date: '2025-01', type: 'data',
+                tech: ['Python', 'Streamlit'],
+                summary: 'An analysis of multi-year hourly air-quality readings from monitoring stations in China, covering PM2.5, PM10, SO2, NO2, CO, O3, and weather variables. It identifies which stations stay consistently cleanest and when pollutants peak during rush hours, and delivers the findings as a public Streamlit dashboard for non-technical readers.',
+                links: [ext('Live Demo', 'https://airqualityanalysis2712.streamlit.app/'), gh('Air_Quality_Analysis')]
+            },
+            {
+                title: 'Loan Repayment Prediction', date: '2024-04', type: 'aiml',
+                tech: ['Random Forest', 'Scikit-learn', 'Seaborn'],
+                summary: 'Predicts whether a loan will be repaid on time. After profiling and cleaning the loan records (missing values, outliers, and schema inconsistencies), I benchmarked a Random Forest against a logistic regression baseline on ROC-AUC, where it performed better, and visualized the strongest drivers of repayment timeliness.',
+                links: [ext('Google Colab', 'https://colab.research.google.com/drive/12gCyjisSX-PCf1VXJw3bSldQaIrG0D0N?usp=sharing')]
+            },
+            {
+                title: 'US Flight Delay Visualization', date: '2023-11', type: 'data',
+                tech: ['Tableau', 'Excel'],
+                summary: 'A Tableau dashboard on where US flight delays concentrate. I cleaned and standardized the flight records in Excel, resolving inconsistent airport codes and missing timestamps, then built a geographic delay map that ranks the worst-performing airports and filters by carrier and route. The delays cluster in a small number of hub airports, pointing toward hub congestion rather than route distance.',
+                links: [ext('Tableau Public', 'https://public.tableau.com/app/profile/bejo.subejo/viz/FlightDelay_17006300929420/USFlightDelay')]
+            },
+            {
+                title: 'Mushroom Classification', date: '2023-10', type: 'aiml',
+                tech: ['K-Nearest Neighbors', 'Scikit-learn', 'Matplotlib'],
+                summary: 'An early machine-learning project that classifies mushrooms as edible or poisonous from categorical features. I ran exploratory analysis, encoded the features for distance-based modeling, and tuned K through grid search with cross-validation. The near-perfect result comes from how cleanly the dataset separates rather than from model complexity.',
+                links: [ext('Google Colab', 'https://colab.research.google.com/drive/1Ya7TjEs93IbTI1hRXnZXlNfxa5ifZcsZ?usp=sharing')]
             }
+        ].sort((a, b) => b.date.localeCompare(a.date)); // stable: same-month projects keep the order above
+
+        // Thumbnail per project title: a screenshot in Screenshot/, or a generated drawing in Screenshot/illustrations/.
+        // To swap an illustration for a real screenshot, drop the file in Screenshot/ and change the path here.
+        const SS = 'Screenshot/', IL = 'Screenshot/illustrations/';
+        const THUMBS = {
+            'E-commerce Batch Data Pipeline': SS + 'E-commerce Batch Data Pipeline.png',
+            'Walmart Retail Data Pipeline': SS + 'Walmart Retail Data Pipeline.png',
+            'Agentic RAG for Indonesian Regulatory Documents': IL + 'agentic-rag-regdocs.svg',
+            'Card Portfolio Leakage Analysis': SS + 'Card Portfolio Leakage Analysis.png',
+            'US Hospital Trauma Access': SS + 'US Hospital Trauma Access.png',
+            'Biller Analytics Pipeline': SS + 'Biller Analytics Pipeline.png',
+            'Coffee Shop Sales Analysis': SS + 'Coffee Shop Sales Analysis.png',
+            'Smart Waste Classification System': IL + 'smart-waste-classification.svg',
+            'The Faithfulness Cost of CoT Compression': IL + 'cot-faithfulness-cost.svg',
+            'Does Granularity Still Matter Under QLoRA?': IL + 'cot-granularity-qlora.svg',
+            'LLM-as-a-Judge Evaluation Pipeline': IL + 'llm-judge-langfuse.svg',
+            'RAG Chatbot with Inline LLM-as-a-Judge': IL + 'rag-chatbot-llm-judge.svg',
+            'Real-Time Privacy Preservation Module': IL + 'privacy-blur.svg',
+            'Pistachio Species Classification': IL + 'pistachio-classification.svg',
+            'Tokopedia Review Scraper': IL + 'tokopedia-scraper.svg',
+            'Hadoop Sentiment Analysis': IL + 'hadoop-sentiment.svg',
+            'Interactive Sentiment Analysis Pipeline': IL + 'sentiment-pipeline.svg',
+            'Speech Emotion Recognition': IL + 'speech-emotion-recognition.svg',
+            'Book Recommendation System': IL + 'book-recommendation.svg',
+            'Air Quality Analysis Dashboard': IL + 'air-quality.svg',
+            'Loan Repayment Prediction': IL + 'loan-repayment.svg',
+            'US Flight Delay Visualization': IL + 'flight-delay.svg',
+            'Mushroom Classification': IL + 'mushroom-classification.svg'
         };
+        const CONTAIN = ['E-commerce Batch Data Pipeline', 'Walmart Retail Data Pipeline']; // wide diagrams: show whole image instead of cropping
 
-        function selectRole(roleKey) {
-            const data = ROLE_DATA[roleKey];
-            if (!data) return;
+        const TYPES = { all: 'All', data: 'Data', aiml: 'AI / ML' };
+        const TYPE_ICON = { data: 'fas fa-database', aiml: 'fas fa-brain' };
+        const fmtDate = d => new Date(d + '-01').toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
 
-            document.querySelectorAll('.role-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.role === roleKey);
-            });
+        // Fade elements in the first time they scroll into view.
+        const io = new IntersectionObserver(entries => entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        }), { threshold: 0.08 });
+        const reveal = selector => document.querySelectorAll(selector).forEach(el => { el.classList.add('reveal'); io.observe(el); });
 
-            const skillsContainer = document.getElementById('skills-container');
-            skillsContainer.innerHTML = `
-                <div class="skills-grid">${data.skills.map(s => `
-                    <div class="skill-card">
-                        <div class="skill-icon"><i class="${s.icon}"></i></div>
-                        <h3>${s.title}</h3>
-                        <p>${s.items}</p>
-                    </div>
-                `).join('')}</div>
-                <div class="role-cv-download">
-                    <a href="${data.cv}" download class="cv-button">
-                        <i class="fas fa-download"></i> Download CV — ${data.label}
-                    </a>
-                </div>
-            `;
+        document.getElementById('skills-container').innerHTML = SKILLS.map(s => `
+            <details>
+                <summary><i class="ico ${s.icon}"></i>${s.title}<span class="chev"><i class="fas fa-chevron-down"></i></span></summary>
+                <div class="chips">${s.items.map(i => `<span class="chip">${i}</span>`).join('')}</div>
+            </details>`).join('');
 
-            const projectsSection = document.getElementById('projects');
-            const projectsContainer = document.getElementById('projects-container');
-            projectsSection.style.display = 'block';
-            projectsContainer.innerHTML = `<div class="projects-grid">${data.projects.map(p => `
-                <div class="project-card">
-                    <div class="project-content">
-                        <div class="project-header">
-                            <h3>${p.title}</h3>
-                            <span class="project-date">${p.date}</span>
-                        </div>
+        function showProjects(type) {
+            const list = PROJECTS.filter(p => type === 'all' || p.type === type);
+            document.querySelectorAll('.filter').forEach(b => b.classList.toggle('active', b.dataset.type === type));
+            document.getElementById('projects-container').innerHTML = list.map(p => `
+                <article class="card">
+                    <div class="thumb">${THUMBS[p.title]
+                        ? `<img src="${encodeURI(THUMBS[p.title])}" alt="${p.title} preview" loading="lazy"${CONTAIN.includes(p.title) ? ' class="contain"' : ''}>`
+                        : `<i class="${TYPE_ICON[p.type]}"></i>`}</div>
+                    <div class="card-body">
+                        <div class="meta"><span>${TYPES[p.type]}</span><span class="date">${fmtDate(p.date)}</span></div>
+                        <h3>${p.title}</h3>
                         <p>${p.summary}</p>
-                        <div class="project-tech">
-                            ${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
-                        </div>
-                        <div class="project-links">
-                            ${p.links.map(l => `
-                                <a href="${l.url}" target="_blank" rel="noopener noreferrer">
-                                    <i class="${l.icon}"></i> ${l.label}
-                                </a>
-                            `).join('')}
-                        </div>
+                        <div class="chips">${p.tech.map(t => `<span class="chip">${t}</span>`).join('')}</div>
+                        <div class="links">${p.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener noreferrer"><i class="${l.icon}"></i> ${l.label}</a>`).join('')}</div>
                     </div>
-                </div>
-            `).join('')}</div>`;
+                </article>`).join('');
+            reveal('.card');
         }
 
-        document.querySelectorAll('.role-btn').forEach(btn => {
-            btn.addEventListener('click', () => selectRole(btn.dataset.role));
+        document.getElementById('filters').innerHTML = Object.entries(TYPES).map(([key, label]) => {
+            const n = PROJECTS.filter(p => key === 'all' || p.type === key).length;
+            return `<button type="button" class="filter" data-type="${key}">${label}<span class="count">${n}</span></button>`;
+        }).join('');
+        document.getElementById('filters').addEventListener('click', e => {
+            const btn = e.target.closest('.filter');
+            if (btn) showProjects(btn.dataset.type);
         });
+        showProjects('all');
+        reveal('.section-title, .entry, .skills details, .hint, .filters');
 
-        // Hamburger menu toggle
-        const hamburger = document.querySelector('.hamburger');
+        // Mobile menu
         const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                let target = document.querySelector(this.getAttribute('href'));
-                if (target && target.offsetParent === null) {
-                    target = document.querySelector('#skills');
-                }
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll effect to navbar
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.boxShadow = '0 2px 15px rgba(0,0,0,0.08)';
-            } else {
-                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
-            }
-        });
-
-        // Active navigation highlight
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                if (section.offsetParent === null) return;
-                const sectionTop = section.offsetTop;
-                if (window.scrollY >= (sectionTop - 100)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.style.color = '';
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.style.color = 'var(--primary-blue)';
-                }
-            });
-        });
+        document.querySelector('.hamburger').addEventListener('click', () => navLinks.classList.toggle('active'));
+        navLinks.addEventListener('click', () => navLinks.classList.remove('active'));
     </script>
 </body>
 </html>
-
